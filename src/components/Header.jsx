@@ -11,7 +11,7 @@ import { Avatar, Container, Link, TextField } from "@material-ui/core";
 import { Link as LinkRouter } from "react-router-dom";
 
 const sections = [
-  { title: "Market", url: "Market" },
+  { title: "Market", url: "market" },
   { title: "Events", url: "#" },
   { title: "Community", url: "#" },
   { title: "FAQ", url: "#" },
@@ -67,16 +67,17 @@ function Header() {
           sx={{ justifyContent: "space-between", overflowX: "auto" }}
         >
           {sections.map((section) => (
-            <Link
-              color="inherit"
-              noWrap
-              key={section.title}
-              variant="body2"
-              href={section.url}
-              sx={{ p: 1, flexShrink: 0 }}
-            >
-              {section.title}
-            </Link>
+            <LinkRouter to={section.url}>
+              <Link
+                color="inherit"
+                noWrap
+                key={section.title}
+                variant="body2"
+                sx={{ p: 1, flexShrink: 0 }}
+              >
+                {section.title}
+              </Link>
+            </LinkRouter>
           ))}
         </Toolbar>
       </Container>

@@ -20,6 +20,7 @@ import {
   ImageListItemBar,
   ListSubheader,
   makeStyles,
+  Paper,
   Stack,
   Tabs,
 } from "@material-ui/core";
@@ -91,12 +92,13 @@ export default function Main({ nftItems, onCreate, onDelete }) {
             ))}
           </Grid>
           <ImageList
+            gap={12}
             sx={{
               display: "flex",
               flexWrap: "nowrap",
               overflowX: "auto",
               width: "100%",
-              height: "auto",
+              height: "300px",
             }}
           >
             {nftItems.map((nft) => (
@@ -106,17 +108,7 @@ export default function Main({ nftItems, onCreate, onDelete }) {
                   flex: "0 0 auto",
                 }}
               >
-                <img
-                  srcSet={`${nft.img}?w=248&fit=crop&auto=format 1x,
-                    ${nft.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                  alt={nft.title}
-                  loading="lazy"
-                />
-                <ImageListItemBar
-                  title={nft.title}
-                  subtitle={<span>by: {nft.author}</span>}
-                  position="below"
-                />
+                <NftThumb nft={nft} />
               </ImageListItem>
             ))}
           </ImageList>

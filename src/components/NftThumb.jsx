@@ -5,6 +5,7 @@ import {
   CardActionArea,
   CardContent,
   CardMedia,
+  Grid,
   Typography,
 } from "@material-ui/core";
 
@@ -12,19 +13,34 @@ const NftThumb = ({ nft }) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
-        <CardMedia
-          sx={{ height: 140 }}
-          image="/static/images/cards/contemplative-reptile.jpg"
-          title="Contemplative Reptile"
-        />
+        <CardMedia sx={{ height: 200 }} image={nft.img} title={nft.title} />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {nft.text}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
+          <Grid container>
+            <Grid container item>
+              <Grid item xs={8}>
+                <Typography gutterBottom variant="h5" component="div">
+                  {nft.title}
+                </Typography>
+              </Grid>
+              <Grid item xs={4}>
+                <Typography component="p" align="right">
+                  가격
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid container item>
+              <Grid item xs={8}>
+                <Typography variant="body2" color="text.secondary">
+                  Amazing Burger
+                </Typography>
+              </Grid>
+              <Grid item xs={4}>
+                <Typography component="p" align="right">
+                  1000원
+                </Typography>
+              </Grid>
+            </Grid>
+          </Grid>
         </CardContent>
       </CardActionArea>
     </Card>
