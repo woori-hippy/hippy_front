@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/hippy_front/static/css/main.7e29ecae.chunk.css",
-    "main.js": "/hippy_front/static/js/main.1101a96e.chunk.js",
-    "main.js.map": "/hippy_front/static/js/main.1101a96e.chunk.js.map",
+    "main.js": "/hippy_front/static/js/main.004fb03f.chunk.js",
+    "main.js.map": "/hippy_front/static/js/main.004fb03f.chunk.js.map",
     "runtime-main.js": "/hippy_front/static/js/runtime-main.9fb7e5ce.js",
     "runtime-main.js.map": "/hippy_front/static/js/runtime-main.9fb7e5ce.js.map",
-    "static/js/2.f655603b.chunk.js": "/hippy_front/static/js/2.f655603b.chunk.js",
-    "static/js/2.f655603b.chunk.js.map": "/hippy_front/static/js/2.f655603b.chunk.js.map",
+    "static/js/2.ff84d754.chunk.js": "/hippy_front/static/js/2.ff84d754.chunk.js",
+    "static/js/2.ff84d754.chunk.js.map": "/hippy_front/static/js/2.ff84d754.chunk.js.map",
     "index.html": "/hippy_front/index.html",
     "static/css/main.7e29ecae.chunk.css.map": "/hippy_front/static/css/main.7e29ecae.chunk.css.map",
-    "static/js/2.f655603b.chunk.js.LICENSE.txt": "/hippy_front/static/js/2.f655603b.chunk.js.LICENSE.txt"
+    "static/js/2.ff84d754.chunk.js.LICENSE.txt": "/hippy_front/static/js/2.ff84d754.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.9fb7e5ce.js",
-    "static/js/2.f655603b.chunk.js",
+    "static/js/2.ff84d754.chunk.js",
     "static/css/main.7e29ecae.chunk.css",
-    "static/js/main.1101a96e.chunk.js"
+    "static/js/main.004fb03f.chunk.js"
   ]
 }
