@@ -10,9 +10,6 @@ import MainFeaturedPost from "./MainFeaturedPost";
 import FeaturedPost from "./FeaturedPost.jsx";
 import Sidebar from "./Sidebar";
 import Footer from "./Footer.jsx";
-import { useDispatch, useSelector } from "react-redux";
-import { create_nft, delete_nft } from "../modules/nftItems";
-import Carousel from "react-material-ui-carousel";
 import {
   IconButton,
   ImageList,
@@ -25,13 +22,11 @@ import {
   Tabs,
 } from "@material-ui/core";
 import NftThumb from "./NftThumb";
-import { Tab } from "@material-ui/icons";
-import InfoIcon from "@material-ui/icons/Info";
 
 const mainFeaturedPost = {
   title: "share your piece",
   description: "희귀한 디지털 아이템을 거래 또는 탐색해보세요",
-  image: "https://source.unsplash.com/800x600/?block",
+  image: "https://source.unsplash.com/1200x200/?block",
   imageText: "main image description",
 };
 
@@ -78,7 +73,7 @@ const sidebar = {
   ],
 };
 
-export default function Main({ nftItems, onCreate, onDelete }) {
+export default function Main({ products, onCreate, onDelete }) {
   return (
     <React.Fragment>
       <CssBaseline />
@@ -92,23 +87,23 @@ export default function Main({ nftItems, onCreate, onDelete }) {
             ))}
           </Grid>
           <ImageList
-            gap={12}
+            gap={18}
             sx={{
               display: "flex",
               flexWrap: "nowrap",
               overflowX: "auto",
               width: "100%",
-              height: "300px",
+              height: "320px",
             }}
           >
-            {nftItems.map((nft) => (
+            {products.map((product) => (
               <ImageListItem
-                key={nft.img}
+                key={product.img}
                 sx={{
                   flex: "0 0 auto",
                 }}
               >
-                <NftThumb nft={nft} />
+                <NftThumb product={product} />
               </ImageListItem>
             ))}
           </ImageList>

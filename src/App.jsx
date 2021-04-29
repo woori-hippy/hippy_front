@@ -2,30 +2,30 @@
 import { jsx, css } from "@emotion/react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
-import MainContainer from "./container/MainContainer";
-import LoginContainer from "./container/LoginContainer";
-import MarketContainer from "./container/MarketContainer";
-import MypageContainer from "./container/MypageContainer";
-import SignupContainer from "./container/SignupContainer";
+import LoginPage from "./pages/LoginPage";
+import MainPage from "./pages/MainPage";
+import MarketPage from "./pages/MarketPage";
+import MypagePage from "./pages/MypagePage";
+import SignupPage from "./pages/SignupPage";
 
 function App() {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Switch>
         <Route exact path="/">
-          <MainContainer />
+          <MainPage />
         </Route>
         <Route exact path="/login">
-          <LoginContainer />
+          <LoginPage />
         </Route>
         <Route exact path="/signup">
-          <SignupContainer />
+          <SignupPage />
         </Route>
         <Route exact path="/mypage">
-          <MypageContainer />
+          <MypagePage />
         </Route>
         <Route exact path="/market">
-          <MarketContainer />
+          <MarketPage />
         </Route>
       </Switch>
     </BrowserRouter>
