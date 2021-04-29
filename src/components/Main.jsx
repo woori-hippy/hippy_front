@@ -27,14 +27,6 @@ import NftThumb from "./NftThumb";
 import { Tab } from "@material-ui/icons";
 import InfoIcon from "@material-ui/icons/Info";
 
-const sections = [
-  { title: "Market", url: "Market" },
-  { title: "Events", url: "#" },
-  { title: "Community", url: "#" },
-  { title: "FAQ", url: "#" },
-  { title: "About", url: "About" },
-];
-
 const mainFeaturedPost = {
   title: "share your piece",
   description: "희귀한 디지털 아이템을 거래 또는 탐색해보세요",
@@ -85,37 +77,12 @@ const sidebar = {
   ],
 };
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-around",
-    overflow: "hidden",
-    backgroundColor: theme.palette.background.paper,
-  },
-  gridList: {
-    flexWrap: "nowrap",
-    // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
-    transform: "translateZ(0)",
-  },
-  title: {
-    color: theme.palette.primary.light,
-  },
-  titleBar: {
-    background:
-      "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)",
-  },
-}));
-
 export default function Main({ nftItems, onCreate, onDelete }) {
-  const classes = useStyles();
-
   return (
     <React.Fragment>
       <CssBaseline />
+      <Header title="Hippy" />
       <Container maxWidth="lg">
-        <Header title="Hippy" sections={sections} />
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
           <Grid container spacing={4}>
@@ -123,46 +90,36 @@ export default function Main({ nftItems, onCreate, onDelete }) {
               <FeaturedPost key={post.title} post={post} />
             ))}
           </Grid>
-          <div className={classes.root}>
-            <ImageList
-              className={classes.gridList}
-              sx={{
-                display: "flex",
-                flexWrap: "nowrap",
-                overflowX: "auto",
-                width: "100%",
-                height: 200,
-              }}
-            >
-              {nftItems.map((nft) => (
-                <ImageListItem
-                  key={nft.img}
-                  sx={{
-                    flex: "0 0 auto",
-                  }}
-                >
-                  <img
-                    srcSet={`${nft.img}?w=248&fit=crop&auto=format 1x,
-                ${nft.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                    alt={nft.title}
-                    loading="lazy"
-                  />
-                  <ImageListItemBar
-                    title={nft.title}
-                    subtitle={nft.author}
-                    actionIcon={
-                      <IconButton
-                        sx={{ color: "rgba(255, 255, 255, 0.54)" }}
-                        aria-label={`info about ${nft.title}`}
-                      >
-                        <InfoIcon />
-                      </IconButton>
-                    }
-                  />
-                </ImageListItem>
-              ))}
-            </ImageList>
-          </div>
+          <ImageList
+            sx={{
+              display: "flex",
+              flexWrap: "nowrap",
+              overflowX: "auto",
+              width: "100%",
+              height: "auto",
+            }}
+          >
+            {nftItems.map((nft) => (
+              <ImageListItem
+                key={nft.img}
+                sx={{
+                  flex: "0 0 auto",
+                }}
+              >
+                <img
+                  srcSet={`${nft.img}?w=248&fit=crop&auto=format 1x,
+                    ${nft.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                  alt={nft.title}
+                  loading="lazy"
+                />
+                <ImageListItemBar
+                  title={nft.title}
+                  subtitle={<span>by: {nft.author}</span>}
+                  position="below"
+                />
+              </ImageListItem>
+            ))}
+          </ImageList>
         </main>
       </Container>
       <Footer title="Hippy" description="Hippy" />
