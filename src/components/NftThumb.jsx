@@ -8,14 +8,15 @@ import {
   Grid,
   Typography,
 } from "@material-ui/core";
+import React from "react";
 
 const NftThumb = ({ product }) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
         <CardMedia
-          sx={{ height: 200 }}
-          image={product.img}
+          sx={{ height: 250, backgroundSize: "contain" }}
+          image={product.src}
           title={product.title}
         />
         <CardContent>
@@ -23,7 +24,7 @@ const NftThumb = ({ product }) => {
             <Grid container item>
               <Grid item xs={8}>
                 <Typography gutterBottom variant="h5" component="div">
-                  {product.title}
+                  {product.name}
                 </Typography>
               </Grid>
               <Grid item xs={4}>
@@ -35,12 +36,12 @@ const NftThumb = ({ product }) => {
             <Grid container item>
               <Grid item xs={8}>
                 <Typography variant="body2" color="text.secondary">
-                  Amazing Burger
+                  {product.author}
                 </Typography>
               </Grid>
               <Grid item xs={4}>
                 <Typography component="p" align="right">
-                  1000원
+                  {`${product.price}원`}
                 </Typography>
               </Grid>
             </Grid>
@@ -51,4 +52,4 @@ const NftThumb = ({ product }) => {
   );
 };
 
-export default NftThumb;
+export default React.memo(NftThumb);
