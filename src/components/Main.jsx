@@ -97,7 +97,7 @@ export default function Main({ products, onCreate, onDelete }) {
                 container
                 sx={{ borderBottom: "1px solid #E6E6E6", margin: "1.5rem 0" }}
               >
-                <Grid item xs={10}>
+                <Grid item xs={8}>
                   <Typography
                     component="h2"
                     sx={{
@@ -110,7 +110,7 @@ export default function Main({ products, onCreate, onDelete }) {
                 <Grid
                   container
                   item
-                  xs={2}
+                  xs={4}
                   justifyContent="flex-end"
                   alignItems="center"
                 >
@@ -125,8 +125,9 @@ export default function Main({ products, onCreate, onDelete }) {
                   display: "flex",
                   flexWrap: "nowrap",
                   overflowX: "auto",
+                  overflowY: "hidden",
                   width: "100%",
-                  height: "370px",
+                  height: "420px",
                 }}
               >
                 {products.map((product) =>

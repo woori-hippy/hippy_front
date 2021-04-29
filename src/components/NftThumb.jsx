@@ -1,6 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import {
+  Box,
   Card,
   CardActionArea,
   CardContent,
@@ -12,8 +14,23 @@ import React from "react";
 
 const NftThumb = ({ product }) => {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card
+      sx={{
+        margin: "0.5rem 0 0 0.5rem",
+        maxWidth: 345,
+        "&:hover": {
+          transition: "all 0.5s",
+          boxShadow: "5px 5px 15px 3px rgba(201,201,201,0.5)",
+        },
+      }}
+    >
       <CardActionArea>
+        <Grid container justifyContent="flex-end" alignItems="center">
+          <FavoriteBorderIcon />
+          <Typography sx={{ margin: "0.5rem 1rem 0.5rem 0.5rem" }}>
+            {product.star}
+          </Typography>
+        </Grid>
         <CardMedia
           sx={{ height: 250, backgroundSize: "contain" }}
           image={product.src}
