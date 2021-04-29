@@ -19,7 +19,7 @@ function ListItemLink(props) {
   return <ListItem button component="a" {...props} />;
 }
 
-const Market = ({ nftItems }) => {
+const Market = ({ products }) => {
   return (
     <React.Fragment>
       <Header />
@@ -49,12 +49,24 @@ const Market = ({ nftItems }) => {
             </ListItemLink>
           </List>
         </Grid>
-        <Grid container item xs={10} sx={{ justifyContent: "center" }}>
-          {nftItems.map((nft) => (
-            <Box sx={{ padding: "0.5rem" }}>
-              <NftThumb nft={nft} />
-            </Box>
-          ))}
+        <Grid container item xs={10} sx={{ padding: "1rem" }}>
+          <Box
+            sx={{
+              width: "100%",
+              display: "grid",
+              gridTemplateColumns:
+                "repeat(auto-fit, minmax(210px, max-content))",
+              gridGap: "16px",
+              justifyContent: "center",
+              padding: "initial",
+            }}
+          >
+            {products.map((product) => (
+              <Box>
+                <NftThumb product={product} />
+              </Box>
+            ))}
+          </Box>
         </Grid>
       </Grid>
       <Footer />

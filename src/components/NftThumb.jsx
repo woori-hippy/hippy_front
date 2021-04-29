@@ -9,17 +9,21 @@ import {
   Typography,
 } from "@material-ui/core";
 
-const NftThumb = ({ nft }) => {
+const NftThumb = ({ product }) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
-        <CardMedia sx={{ height: 200 }} image={nft.img} title={nft.title} />
+        <CardMedia
+          sx={{ height: 200 }}
+          image={product.img}
+          title={product.title}
+        />
         <CardContent>
           <Grid container>
             <Grid container item>
               <Grid item xs={8}>
                 <Typography gutterBottom variant="h5" component="div">
-                  {nft.title}
+                  {product.title}
                 </Typography>
               </Grid>
               <Grid item xs={4}>

@@ -1,8 +1,13 @@
 import { combineReducers } from "redux";
-import nftItems from "./nftItems";
+import products from "./products";
+import { productsSaga } from "./products";
+import { all } from "redux-saga/effects";
 
 const rootReducer = combineReducers({
-  nftItems,
+  products,
 });
+export function* rootSaga() {
+  yield all([productsSaga()]);
+}
 
 export default rootReducer;

@@ -32,16 +32,17 @@ function Header() {
           <LinkRouter to="/">
             <Avatar src="https://i.postimg.cc/QdNLR1CX/logo-fullsize.png" />
           </LinkRouter>
-          <Typography
-            component="h2"
-            variant="h5"
-            color="#1B7EA6"
-            align="left"
-            noWrap
-            sx={{ flex: 1 }}
-          >
-            Hippy
-          </Typography>
+          <LinkRouter to="/" css={{ flex: 1 }}>
+            <Typography
+              component="h2"
+              variant="h5"
+              color="#1B7EA6"
+              align="left"
+              noWrap
+            >
+              Hippy
+            </Typography>
+          </LinkRouter>
           <TextField label="아이템 검색하기" size="small" sx={{ flex: 3 }} />
           <IconButton>
             <SearchIcon />
@@ -85,4 +86,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default React.memo(Header);
