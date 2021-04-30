@@ -1,18 +1,23 @@
 import {
   Box,
   Divider,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
   Grid,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
   Paper,
+  Radio,
+  RadioGroup,
 } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
-import InboxIcon from "@material-ui/icons/Inbox";
-import DraftsIcon from "@material-ui/icons/Drafts";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import ProductThumb from "./ProductThumb";
 
 function ListItemLink(props) {
@@ -20,6 +25,12 @@ function ListItemLink(props) {
 }
 
 const Market = ({ products }) => {
+  const [tag, setTag] = useState("All");
+
+  const handleTagChange = (event) => {
+    setTag(event.target.value);
+  };
+
   return (
     <React.Fragment>
       <Header />
@@ -28,25 +39,86 @@ const Market = ({ products }) => {
           <List component="nav" aria-label="main mailbox folders">
             <ListItem button>
               <ListItemIcon>
-                <InboxIcon />
+                <AccountBoxIcon />
               </ListItemIcon>
-              <ListItemText primary="Inbox" />
+              <ListItemText primary="My Product" />
             </ListItem>
             <ListItem button>
               <ListItemIcon>
-                <DraftsIcon />
+                <FavoriteBorderIcon />
               </ListItemIcon>
-              <ListItemText primary="Drafts" />
+              <ListItemText primary="Favorite" />
             </ListItem>
           </List>
           <Divider />
-          <List component="nav" aria-label="secondary mailbox folders">
-            <ListItem button>
-              <ListItemText primary="Trash" />
-            </ListItem>
-            <ListItemLink href="#simple-list">
-              <ListItemText primary="Spam" />
-            </ListItemLink>
+          <List component="nav" aria-label="main mailbox folders">
+            <FormControl component="fieldset" sx={{ width: "100%" }}>
+              <ListItem>
+                <FormLabel component="legend">Tag</FormLabel>
+              </ListItem>
+              <RadioGroup
+                aria-label="Tag"
+                name="Tag"
+                value={tag}
+                onChange={handleTagChange}
+              >
+                <ListItem
+                  button
+                  justifyContent="center"
+                  alignItems="center"
+                  sx={{ padding: "0" }}
+                >
+                  <FormControlLabel
+                    value="All"
+                    control={<Radio />}
+                    label="All"
+                    sx={{ width: "100%", margin: "0", padding: "0.5rem" }}
+                  />
+                </ListItem>
+
+                <ListItem
+                  button
+                  justifyContent="center"
+                  alignItems="center"
+                  sx={{ padding: "0" }}
+                >
+                  <FormControlLabel
+                    value="Digital Art"
+                    control={<Radio />}
+                    label="Digital Art"
+                    sx={{ width: "100%", margin: "0", padding: "0.5rem" }}
+                  />
+                </ListItem>
+
+                <ListItem
+                  button
+                  justifyContent="center"
+                  alignItems="center"
+                  sx={{ padding: "0" }}
+                >
+                  <FormControlLabel
+                    value="Animation"
+                    control={<Radio />}
+                    label="Animation"
+                    sx={{ width: "100%", margin: "0", padding: "0.5rem" }}
+                  />
+                </ListItem>
+
+                <ListItem
+                  button
+                  justifyContent="center"
+                  alignItems="center"
+                  sx={{ padding: "0" }}
+                >
+                  <FormControlLabel
+                    value="Virtual Reality"
+                    control={<Radio />}
+                    label="Virtual Reality"
+                    sx={{ width: "100%", margin: "0", padding: "0.5rem" }}
+                  />
+                </ListItem>
+              </RadioGroup>
+            </FormControl>
           </List>
         </Grid>
         <Grid container item xs={10} sx={{ padding: "1rem" }}>
@@ -61,11 +133,15 @@ const Market = ({ products }) => {
               padding: "initial",
             }}
           >
-            {products.map((product) => (
-              <Box>
+            {products.map((product) =>
+              product.tag === tag ? (
+                <Box>
+                  <ProductThumb product={product} />
+                </Box>
+              ) : tag === "All" ? (
                 <ProductThumb product={product} />
-              </Box>
-            ))}
+              ) : null
+            )}
           </Box>
         </Grid>
       </Grid>
