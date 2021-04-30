@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Divider,
   FormControl,
   FormControlLabel,
@@ -9,9 +10,9 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  Paper,
   Radio,
   RadioGroup,
+  Typography,
 } from "@material-ui/core";
 import React, { useState } from "react";
 import Footer from "./Footer";
@@ -20,18 +21,32 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import ProductThumb from "./ProductThumb";
 
+const activeTypo = (sort, state, title) => {
+  return sort === state ? (
+    <Typography sx={{ color: "#E1315A" }}>{title}</Typography>
+  ) : (
+    <Typography sx={{ color: "inherit" }}>{title}</Typography>
+  );
+};
+
 const Market = ({ products }) => {
   const [tag, setTag] = useState("All");
+  const [sort, setSort] = useState("latest");
 
   const handleTagChange = (event) => {
     setTag(event.target.value);
+    console.log(sort);
   };
 
   return (
     <React.Fragment>
       <Header />
       <Grid container>
-        <Grid item xs={2}>
+        <Grid
+          item
+          xs={2}
+          sx={{ borderRight: "1px solid #E0E0E0", paddingRight: "0.2rem" }}
+        >
           <List component="nav" aria-label="main mailbox folders">
             <ListItem button>
               <ListItemIcon>
@@ -117,7 +132,27 @@ const Market = ({ products }) => {
             </FormControl>
           </List>
         </Grid>
-        <Grid container item xs={10} sx={{ padding: "1rem" }}>
+        <Grid container item xs={10} sx={{ padding: "0 1rem" }}>
+          <Grid
+            xs={12}
+            sx={{ margin: "0.5rem 0 2rem 0", backgroundColor: "#F0F0F0" }}
+          >
+            <Button color="inherit" onClick={() => setSort("latest")}>
+              {activeTypo(sort, "latest", "최근 업데이트 순")}
+            </Button>
+            <Button color="inherit" onClick={() => setSort("star")}>
+              {activeTypo(sort, "star", "좋아요 순")}
+            </Button>
+            <Button color="inherit" onClick={() => setSort("lowPrice")}>
+              {activeTypo(sort, "lowPrice", "낮은 가격 순")}
+            </Button>
+            <Button color="inherit" onClick={() => setSort("highPrice")}>
+              {activeTypo(sort, "highPrice", "높은 가격 순")}
+            </Button>
+            <Button color="inherit" onClick={() => setSort("user")}>
+              {activeTypo(sort, "user", "판매자 순")}
+            </Button>
+          </Grid>
           <Box
             sx={{
               width: "100%",

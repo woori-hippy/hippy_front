@@ -1,30 +1,12 @@
 import * as React from "react";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
-import GitHubIcon from "@material-ui/icons/GitHub";
-import FacebookIcon from "@material-ui/icons/Facebook";
-import TwitterIcon from "@material-ui/icons/Twitter";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
-import PaletteIcon from "@material-ui/icons/Palette";
 import Header from "./Header";
 import MainFeaturedPost from "./MainFeaturedPost";
 import FeaturedPost from "./FeaturedPost.jsx";
 import Footer from "./Footer.jsx";
-import {
-  Box,
-  IconButton,
-  ImageList,
-  ImageListItem,
-  ImageListItemBar,
-  ListSubheader,
-  makeStyles,
-  Paper,
-  Stack,
-  Tabs,
-  Typography,
-} from "@material-ui/core";
-import { fontSize } from "@material-ui/system";
+import { Box, ImageList, ImageListItem, Typography } from "@material-ui/core";
 import ProductThumb from "./ProductThumb";
 
 const mainFeaturedPost = {
@@ -102,6 +84,7 @@ export default function Main({ products, onCreate, onDelete }) {
                     <ImageListItem
                       key={product.id}
                       sx={{
+                        width: "15rem",
                         flex: "0 0 auto",
                       }}
                     >

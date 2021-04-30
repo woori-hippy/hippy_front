@@ -18,7 +18,7 @@ const NftThumb = ({ product }) => {
     <Link to={`/product/${product.id}`}>
       <Card
         sx={{
-          maxWidth: 345,
+          maxWidth: "15rem",
           boxShadow: "2px 3px 10px 0px rgba(117,117,117,0.5)",
         }}
       >
