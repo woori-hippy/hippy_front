@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/hippy_front/static/css/main.7e29ecae.chunk.css",
-    "main.js": "/hippy_front/static/js/main.004fb03f.chunk.js",
-    "main.js.map": "/hippy_front/static/js/main.004fb03f.chunk.js.map",
+    "main.css": "/hippy_front/static/css/main.dc372fba.chunk.css",
+    "main.js": "/hippy_front/static/js/main.424c47a6.chunk.js",
+    "main.js.map": "/hippy_front/static/js/main.424c47a6.chunk.js.map",
     "runtime-main.js": "/hippy_front/static/js/runtime-main.9fb7e5ce.js",
     "runtime-main.js.map": "/hippy_front/static/js/runtime-main.9fb7e5ce.js.map",
-    "static/js/2.ff84d754.chunk.js": "/hippy_front/static/js/2.ff84d754.chunk.js",
-    "static/js/2.ff84d754.chunk.js.map": "/hippy_front/static/js/2.ff84d754.chunk.js.map",
+    "static/js/2.deb9f81d.chunk.js": "/hippy_front/static/js/2.deb9f81d.chunk.js",
+    "static/js/2.deb9f81d.chunk.js.map": "/hippy_front/static/js/2.deb9f81d.chunk.js.map",
     "index.html": "/hippy_front/index.html",
-    "static/css/main.7e29ecae.chunk.css.map": "/hippy_front/static/css/main.7e29ecae.chunk.css.map",
-    "static/js/2.ff84d754.chunk.js.LICENSE.txt": "/hippy_front/static/js/2.ff84d754.chunk.js.LICENSE.txt"
+    "static/css/main.dc372fba.chunk.css.map": "/hippy_front/static/css/main.dc372fba.chunk.css.map",
+    "static/js/2.deb9f81d.chunk.js.LICENSE.txt": "/hippy_front/static/js/2.deb9f81d.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.9fb7e5ce.js",
-    "static/js/2.ff84d754.chunk.js",
-    "static/css/main.7e29ecae.chunk.css",
-    "static/js/main.004fb03f.chunk.js"
+    "static/js/2.deb9f81d.chunk.js",
+    "static/css/main.dc372fba.chunk.css",
+    "static/js/main.424c47a6.chunk.js"
   ]
 }
