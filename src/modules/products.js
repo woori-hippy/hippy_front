@@ -8,10 +8,6 @@ import {
 } from "../lib/asyncUtils";
 import { takeEvery } from "redux-saga/effects";
 
-//TODO 이미지, 태그, 제목을 통해 NFT Product만들기
-const CREATE_PRODUCT = "nftItems/CREATE_NFT";
-const DELETE_PRODUCT = "nftItems/DELETE_NFT";
-
 const GET_PRODUCTS = "GET_PRODUCTS";
 const GET_PRODUCTS_SUCCESS = "GET_PRODUCTS_SUCCESS";
 const GET_PRODUCTS_ERROR = "GET_PRODUCTS_ERROR";

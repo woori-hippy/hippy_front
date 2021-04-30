@@ -24,8 +24,20 @@ const NftThumb = ({ product }) => {
         }}
       >
         <CardActionArea>
-          <Grid container justifyContent="flex-end" alignItems="center">
-            <FavoriteBorderIcon />
+          <Grid
+            container
+            justifyContent="flex-end"
+            alignItems="center"
+            sx={{ color: "gray" }}
+          >
+            <FavoriteBorderIcon
+              sx={{
+                "&: hover": {
+                  transition: "all 0.1s",
+                  color: "#F7209E",
+                },
+              }}
+            />
             <Typography
               sx={{
                 margin: "0.5rem 1rem 0.5rem 0.5rem",

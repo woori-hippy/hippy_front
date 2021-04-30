@@ -11,6 +11,8 @@ import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
+import { useDispatch } from "react-redux";
+import { localLoginLequest } from "../modules/login";
 
 function Copyright(props) {
   return (
@@ -31,6 +33,15 @@ function Copyright(props) {
 }
 
 export default function Login() {
+  const dispatch = useDispatch();
+  const emailRef = React.useRef();
+  const pwdRef = React.useRef();
+  const handleLogon = (e) => {
+    const email = emailRef.current.value;
+    const password = emailRef.current.value;
+    dispatch(localLoginLequest({ email, password }));
+  };
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -65,6 +76,7 @@ export default function Login() {
             name="email"
             autoComplete="email"
             autoFocus
+            ref={emailRef}
           />
           <TextField
             margin="normal"
@@ -75,6 +87,7 @@ export default function Login() {
             type="password"
             id="password"
             autoComplete="current-password"
+            ref={pwdRef}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -85,6 +98,7 @@ export default function Login() {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
+            onClick={handleLogon}
           >
             Sign In
           </Button>

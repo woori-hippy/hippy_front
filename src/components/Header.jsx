@@ -47,7 +47,7 @@ function Header() {
           <IconButton>
             <SearchIcon />
           </IconButton>
-          <LinkRouter to="/login">
+          <LinkRouter to="/mypage">
             <IconButton>
               <PersonIcon />
             </IconButton>
