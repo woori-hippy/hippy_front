@@ -20,10 +20,6 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import ProductThumb from "./ProductThumb";
 
-function ListItemLink(props) {
-  return <ListItem button component="a" {...props} />;
-}
-
 const Market = ({ products }) => {
   const [tag, setTag] = useState("All");
 

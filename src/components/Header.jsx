@@ -68,7 +68,7 @@ function Header() {
           sx={{ justifyContent: "space-between", overflowX: "auto" }}
         >
           {sections.map((section) => (
-            <LinkRouter to={section.url}>
+            <LinkRouter to={`/${section.url}`}>
               <Link
                 color="inherit"
                 noWrap

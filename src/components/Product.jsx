@@ -51,7 +51,16 @@ const Product = ({ product }) => {
                 </Grid>
               </Grid>
               <Grid container item xs={1} alignItems="center">
-                <FavoriteBorderIcon fontSize="large" />
+                <FavoriteBorderIcon
+                  fontSize="large"
+                  sx={{
+                    cursor: "pointer",
+                    "&: hover": {
+                      transition: "all 0.1s",
+                      color: "#F7209E",
+                    },
+                  }}
+                />
               </Grid>
               <Grid container item xs={1} alignItems="center">
                 <ShareIcon fontSize="large" />

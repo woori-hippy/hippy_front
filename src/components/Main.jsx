@@ -94,6 +94,7 @@ export default function Main({ products, onCreate, onDelete }) {
                   overflowX: "auto",
                   overflowY: "hidden",
                   height: "420px",
+                  padding: "0.5rem 0 0 0.5rem",
                 }}
               >
                 {products.map((product) =>

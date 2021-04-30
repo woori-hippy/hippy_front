@@ -12,7 +12,8 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { useDispatch } from "react-redux";
-import { localLoginLequest } from "../modules/login";
+import { loginLequest } from "../modules/login";
+import { useRef } from "react";
 
 function Copyright(props) {
   return (
@@ -34,12 +35,12 @@ function Copyright(props) {
 
 export default function Login() {
   const dispatch = useDispatch();
-  const emailRef = React.useRef();
-  const pwdRef = React.useRef();
-  const handleLogon = (e) => {
+  const emailRef = useRef();
+  const pwdRef = useRef();
+  const handleLogin = (e) => {
     const email = emailRef.current.value;
     const password = emailRef.current.value;
-    dispatch(localLoginLequest({ email, password }));
+    dispatch(loginLequest({ email, password }));
   };
 
   return (
@@ -98,7 +99,7 @@ export default function Login() {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
-            onClick={handleLogon}
+            onClick={handleLogin}
           >
             Sign In
           </Button>
