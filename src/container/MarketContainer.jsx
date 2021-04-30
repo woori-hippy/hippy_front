@@ -14,9 +14,9 @@ const MarketContainer = (props) => {
     dispatch(getProducts());
   }, [dispatch]);
 
-  if (loading && !data) console.log("loading...");
-  if (error) console.log("Error");
-  if (!data) console.log("No data");
+  if (loading && !data) return <div>로딩중...</div>; // 로딩중이면서, 데이터가 없을 때에만 로딩중... 표시
+  if (error) return <div>에러 발생!</div>;
+  if (!data) return null;
 
   return <Market products={data} loading={loading && !data} />;
 };
