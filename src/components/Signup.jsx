@@ -11,6 +11,9 @@ import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
+import { useDispatch } from "react-redux";
+import { useRef } from "react";
+import { signUpLequest } from "../modules/login";
 
 function Copyright(props) {
   return (
@@ -31,6 +34,19 @@ function Copyright(props) {
 }
 
 export default function Signup() {
+  const dispatch = useDispatch();
+  const firstNameRef = useRef();
+  const lastNameRef = useRef();
+  const emailRef = useRef();
+  const passworldRef = useRef();
+  const handleSignup = (e) => {
+    const firstName = firstNameRef.current.value;
+    const lastName = lastNameRef.current.value;
+    const name = firstName + lastName;
+    const email = emailRef.current.value;
+    const password = emailRef.current.value;
+    dispatch(signUpLequest({ name, email, password }));
+  };
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -66,6 +82,7 @@ export default function Signup() {
                 id="firstName"
                 label="First Name"
                 autoFocus
+                ref={firstNameRef}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -76,6 +93,7 @@ export default function Signup() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                ref={lastNameRef}
               />
             </Grid>
             <Grid item xs={12}>
@@ -86,6 +104,7 @@ export default function Signup() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                ref={emailRef}
               />
             </Grid>
             <Grid item xs={12}>
@@ -97,6 +116,7 @@ export default function Signup() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                ref={passworldRef}
               />
             </Grid>
             <Grid item xs={12}>
@@ -111,6 +131,7 @@ export default function Signup() {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
+            onClick={handleSignup}
           >
             Sign Up
           </Button>
