@@ -13,7 +13,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import InboxIcon from "@material-ui/icons/Inbox";
 import DraftsIcon from "@material-ui/icons/Drafts";
-import NftThumb from "./NftThumb";
+import ProductThumb from "./ProductThumb";
 
 function ListItemLink(props) {
   return <ListItem button component="a" {...props} />;
@@ -63,7 +63,7 @@ const Market = ({ products }) => {
           >
             {products.map((product) => (
               <Box>
-                <NftThumb product={product} />
+                <ProductThumb product={product} />
               </Box>
             ))}
           </Box>

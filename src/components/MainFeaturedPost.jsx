@@ -12,7 +12,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.grey[800],
     color: theme.palette.common.white,
     marginBottom: theme.spacing(4),
-    backgroundImage: "url(https://source.unsplash.com/random)",
+    backgroundImage:
+      "url(https://i.postimg.cc/K811QmMb/2021-NYR-20447-0001-001-beeple-everydays-the-first-5000-days034733.jpg)",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
@@ -28,6 +29,8 @@ const useStyles = makeStyles((theme) => ({
   mainFeaturedPostContent: {
     position: "relative",
     padding: theme.spacing(3),
+    textShadow: "0px 0px 18px rgba(0, 0, 0, 1)",
+    userSelect: "none",
     [theme.breakpoints.up("md")]: {
       padding: theme.spacing(6),
       paddingRight: 0,
@@ -44,14 +47,6 @@ function MainFeaturedPost(props) {
       className={classes.mainFeaturedPost}
       style={{ backgroundImage: `url(${post.image})`, padding: "2rem 0" }}
     >
-      {/* Increase the priority of the hero background image */}
-      {
-        <img
-          style={{ display: "none" }}
-          src={post.image}
-          alt={post.imageText}
-        />
-      }
       <div className={classes.overlay} />
       <Grid container>
         <Grid item md={6}>
