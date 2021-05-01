@@ -10,10 +10,10 @@ import {
   TextField,
   MenuItem,
   Alert,
-  Snackbar
+  Snackbar,
 } from "@material-ui/core";
-import { Link } from "react-router-dom";
 import SendIcon from '@material-ui/icons/Send';
+import AccountConfirm from "./AccountConfirm";
 
 const currencies = [
   {
@@ -38,36 +38,41 @@ const currencies = [
   },
 ];
 
-export default function NFTCreate() {
+export default function BankAccountRegister(user) {
   const [currency, setCurrency] = React.useState('');
+  const [newWindow, setNewWindow] = React.useState(false);
 
   const handleChange = (event) => {
     setCurrency(event.target.value);
   };
 
   const sendMessage = () => {
-    handleClick()
+    handleSendClick()
   }
 
   const [open, setOpen] = React.useState(false);
 
-  const handleClick = () => {
+  const handleSendClick = () => {
     setOpen(true);
   };
 
-  const handleClose = (event, reason) => {
+  const handleSendClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
     setOpen(false);
   };
 
+  const showWindow = () => {
+
+    setNewWindow(true)
+  }
+
   return (
-    <Link to={`/register`} css={{ width: "fit-content" }}>
       <React.Fragment>
-        <Header title="Hippy" />
+        {newWindow ? <AccountConfirm onClose={() => {setNewWindow(false)}} /> : null }
+        <Header user={user} />
         <Container maxWidth="md">
-          <register>
             <Box>
               <Grid
                 container
@@ -121,6 +126,23 @@ export default function NFTCreate() {
                     id="outlined-helperText"
                     helperText="본인의 계좌 번호를 입력해주세요"
                   />
+                  <Grid container item xs={6} justifyContent="center" sx={{ flexDirection: "row", margin: "0rem auto" }}>
+                  <TextField 
+                    required
+                    label="주민등록번호 앞자리" 
+                    variant="outlined"
+                    sx={{margin: "1rem 0.5rem", width: "12rem"}}
+                    helperText="주민등록번호 앞자리를 입력해주세요"
+                  />
+                  <TextField 
+                    required
+                    type={false ? 'text' : 'password'}
+                    label="주민등록번호 뒷자리" 
+                    variant="outlined"
+                    sx={{margin: "1rem 0.5rem", width: "12rem"}}
+                    helperText="주민등록번호 뒷자리를 입력해주세요"
+                  />
+                  </Grid>
                 </Grid>
                 <Grid container item xs={6} justifyContent="center" sx={{ flexDirection: "row", margin: "0rem auto" }}>
                   <TextField 
@@ -141,8 +163,8 @@ export default function NFTCreate() {
                   </Button>
                 </Grid>
                 <Grid container item xs={12} justifyContent="center" sx={{ flexDirection: "row", margin: "0rem auto" }}>
-                  <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                    <Alert severity="success" variant="filled" onClose={handleClose} severity="success">
+                  <Snackbar open={open} autoHideDuration={6000} onClose={handleSendClose}>
+                    <Alert severity="success" variant="filled" onClose={handleSendClose} severity="success">
                       인증 번호가 전송되었습니다!
                     </Alert>
                   </Snackbar>
@@ -167,17 +189,16 @@ export default function NFTCreate() {
                       variant="contained"
                       color="primary"
                       sx={{margin: "0.5rem", width: "25rem", height: "3.4rem", fontSize: "1rem", backgroundColor: "#1B7EA6"}}
+                      onClick={showWindow}
                     >
-                      계좌 등록하기!
+                      계좌 정보 확인하기
                     </Button>
                   </Grid>
                 </Grid>
               </Grid>
             </Box>
-          </register>
         </Container>
         <Footer title="Hippy" description="Hippy" />
       </React.Fragment>
-    </Link>
   );
 }
