@@ -62,6 +62,18 @@ export default function Mypage({ products }) {
                 >
                   은행 계좌 등록
                 </Button>
+                <Button
+                  size="small"
+                  variant="contained"
+                  disableElevation
+                  sx={{
+                    backgroundColor: "#16669A",
+                    marginTop: "1rem",
+                    marginLeft: "2rem",
+                  }}
+                >
+                  NFT 생성하기
+                </Button>
               </Grid>
               <Grid
                 item
