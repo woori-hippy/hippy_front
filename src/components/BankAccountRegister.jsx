@@ -15,56 +15,70 @@ import {
 import SendIcon from '@material-ui/icons/Send';
 import AccountConfirm from "./AccountConfirm";
 
-const currencies = [
+const bankList = [
   {
     value: '1',
-    label: '우리은행',
+    label: "우리은행",
   },
   {
     value: '2',
-    label: '우리은행',
+    label: "우리은행",
   },
   {
     value: '3',
-    label: '우리은행',
+    label: "우리은행",
   },
   {
     value: '4',
-    label: '우리은행',
+    label: "우리은행",
   },
   {
     value: '5',
-    label: '우리은행',
+    label: "우리은행",
   },
 ];
 
 export default function BankAccountRegister(user) {
-  const [currency, setCurrency] = React.useState('');
+  // state
+  const [selectedBank, setSelectedBank] = React.useState('');
   const [newWindow, setNewWindow] = React.useState(false);
+  const [snackBar, setSnackBar] = React.useState(false);
+  const [userInfos, setUserInfos] = React.useState({
+    bankName: "",
+    account: '',
+    firstNIN: '', // National Identification Number
+    lastNIN: '',
+    phoneNum: '',
+    certificationNum: ''
+  })
 
-  const handleChange = (event) => {
-    setCurrency(event.target.value);
+  // handle methods
+  const handleBankSelect = (event) => {
+    setSelectedBank(event.target.value);
+    setUserInfos({
+      ...userInfos,
+      bankName: bankList[event.target.value-1].label
+    })
   };
-
-  const sendMessage = () => {
-    handleSendClick()
+  const handleTextInput = (event) => {   
+    const { name, value } = event.target
+    setUserInfos({
+      ...userInfos,
+      [name]: value
+    })
   }
-
-  const [open, setOpen] = React.useState(false);
-
-  const handleSendClick = () => {
-    setOpen(true);
-  };
-
-  const handleSendClose = (event, reason) => {
+  const sendMessage = () => {
+    if (userInfos.phoneNum) {
+      setSnackBar(true);
+    }
+  }
+  const handleSnackBarClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
-    setOpen(false);
+    setSnackBar(false);
   };
-
   const showWindow = () => {
-
     setNewWindow(true)
   }
 
@@ -106,51 +120,59 @@ export default function BankAccountRegister(user) {
                     required
                     select
                     label="은행 선택"
-                    value={currency}
-                    onChange={handleChange}
+                    value={selectedBank}
+                    onChange={handleBankSelect}
                     helperText="거래 은행을 선택해주세요"
                     variant="outlined"
                     sx={{width: "13rem", margin: "0rem auto"}}
                   >
-                    {currencies.map((option) => (
+                    {bankList.map((option) => (
                       <MenuItem key={option.value} value={option.value}>
                         {option.label}
                       </MenuItem>
                     ))}
                   </TextField>
                   <TextField 
+                    name="account"
                     required
                     label="계좌 번호 입력" 
                     variant="outlined"
                     sx={{margin: "1rem auto", width: "25rem"}}
                     id="outlined-helperText"
                     helperText="본인의 계좌 번호를 입력해주세요"
+                    onChange={handleTextInput}
                   />
                   <Grid container item xs={6} justifyContent="center" sx={{ flexDirection: "row", margin: "0rem auto" }}>
-                  <TextField 
+                  <TextField
+                    name="firstNIN" 
                     required
                     label="주민등록번호 앞자리" 
                     variant="outlined"
                     sx={{margin: "1rem 0.5rem", width: "12rem"}}
                     helperText="주민등록번호 앞자리를 입력해주세요"
+                    onChange={handleTextInput}
                   />
                   <TextField 
+                    name="lastNIN"
                     required
                     type={false ? 'text' : 'password'}
                     label="주민등록번호 뒷자리" 
                     variant="outlined"
                     sx={{margin: "1rem 0.5rem", width: "12rem"}}
                     helperText="주민등록번호 뒷자리를 입력해주세요"
+                    onChange={handleTextInput}
                   />
                   </Grid>
                 </Grid>
                 <Grid container item xs={6} justifyContent="center" sx={{ flexDirection: "row", margin: "0rem auto" }}>
                   <TextField 
+                    name="phoneNum"
                     required
                     label="휴대폰 번호 입력" 
                     variant="outlined"
                     sx={{margin: "0.5rem", width: "16rem"}}
                     helperText="휴대폰 번호를 입력해주세요"
+                    onChange={handleTextInput}
                   />
                   <Button
                     variant="contained"
@@ -163,19 +185,21 @@ export default function BankAccountRegister(user) {
                   </Button>
                 </Grid>
                 <Grid container item xs={12} justifyContent="center" sx={{ flexDirection: "row", margin: "0rem auto" }}>
-                  <Snackbar open={open} autoHideDuration={6000} onClose={handleSendClose}>
-                    <Alert severity="success" variant="filled" onClose={handleSendClose} severity="success">
+                  <Snackbar open={snackBar} autoHideDuration={2000} onClose={handleSnackBarClose}>
+                    <Alert severity="success" variant="filled" onClose={handleSnackBarClose}>
                       인증 번호가 전송되었습니다!
                     </Alert>
                   </Snackbar>
                 </Grid>
                 <Grid container item xs={6} justifyContent="center" sx={{ flexDirection: "row", margin: "0rem auto" }}>
                   <TextField 
+                    name="certificationNum"
                     required
                     label="인증 번호 입력" 
                     variant="outlined"
                     sx={{margin: "0.5rem", width: "16rem"}}
                     helperText="인증 번호를 입력해주세요"
+                    onChange={handleTextInput}
                   />
                   <Button
                     variant="contained"
