@@ -7,7 +7,7 @@ export const allAcountRequest = async (token) => {
     url:
       "https://openapi.wooribank.com:444/oai/wb/v1/finance/getIndivAllAccInfo",
     data: {
-      UTZPE_CNCT_IPAD: {
+      dataHeader: {
         UTZPE_CNCT_IPAD: "",
         UTZPE_CNCT_MCHR_UNQ_ID: "",
         UTZPE_CNCT_TEL_NO_TXT: "",
@@ -33,7 +33,7 @@ export const wooriTokenRequest = async (account) => {
     method: "post",
     url: "https://openapi.wooribank.com:444/oai/wb/v1/login/getCellCerti",
     data: {
-      UTZPE_CNCT_IPAD: {
+      dataHeader: {
         UTZPE_CNCT_IPAD: "",
         UTZPE_CNCT_MCHR_UNQ_ID: "",
         UTZPE_CNCT_TEL_NO_TXT: "",
@@ -65,7 +65,7 @@ export const phoneRequest = async (phone) => {
     method: "post",
     url: "https://openapi.wooribank.com:444/oai/wb/v1/login/getCellCerti",
     data: {
-      UTZPE_CNCT_IPAD: {
+      dataHeader: {
         UTZPE_CNCT_IPAD: "",
         UTZPE_CNCT_MCHR_UNQ_ID: "",
         UTZPE_CNCT_TEL_NO_TXT: "",

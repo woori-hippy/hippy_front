@@ -7,20 +7,17 @@ import MypagePage from "./pages/MypagePage";
 import NFTCreatePage from "./pages/NFTCreatePage";
 import ProductPage from "./pages/ProductPage";
 import SignupPage from "./pages/SignupPage";
-import { useCookies } from "react-cookie";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { profileLequest } from "./modules/login";
+import { profileRequest } from "./modules/user";
 import BankAccountRegisterPage from "./pages/BankAccountRegisterPage";
 
 function App() {
-  const [session, setSession, removeSession] = useCookies(["connect.sid"]);
   const dispath = useDispatch();
 
   useEffect(() => {
-    console.log(session);
-    if (session) dispath(profileLequest());
-  }, [dispath, session]);
+    dispath(profileRequest());
+  }, [dispath]);
 
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>

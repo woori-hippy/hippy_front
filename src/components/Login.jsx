@@ -12,7 +12,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { useDispatch } from "react-redux";
-import { loginLequest } from "../modules/login";
+import { loginRequest } from "../modules/user";
 import { useRef } from "react";
 
 function Copyright(props) {
@@ -33,7 +33,7 @@ function Copyright(props) {
   );
 }
 
-export default function Login({ onLoginLequest }) {
+export default function Login({ onLoginRequest }) {
   const emailRef = useRef();
   const pwdRef = useRef();
 
@@ -41,7 +41,7 @@ export default function Login({ onLoginLequest }) {
     e.preventDefault();
     const email = emailRef.current.value;
     const password = pwdRef.current.value;
-    onLoginLequest(email, password);
+    onLoginRequest(email, password);
   };
 
   return (

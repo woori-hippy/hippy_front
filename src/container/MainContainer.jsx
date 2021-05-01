@@ -4,13 +4,11 @@ import Main from "../components/Main";
 import { getProducts } from "../modules/products";
 
 const MainContainer = (props) => {
-  const user = useSelector((state) => state.login.user);
+  const user = useSelector((state) => state.user.user);
   const products = useSelector((state) => state.products.products);
   const dispatch = useDispatch();
 
-  // 컴포넌트 마운트 후 포스트 목록 요청
   useEffect(() => {
-    console.log("dispatch 시작");
     dispatch(getProducts());
   }, [dispatch]);
 

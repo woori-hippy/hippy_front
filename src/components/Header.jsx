@@ -7,17 +7,17 @@ import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import PersonIcon from "@material-ui/icons/Person";
 import Typography from "@material-ui/core/Typography";
-import { Avatar, Container, Link, TextField } from "@material-ui/core";
-import { Link as LinkRouter, useHistory } from "react-router-dom";
+import { Avatar, Container, TextField } from "@material-ui/core";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { signoutLequest } from "../modules/login";
+import { signoutRequest } from "../modules/user";
 
 const sections = [
   { title: "Market", url: "market" },
   { title: "Events", url: "#" },
   { title: "Community", url: "#" },
   { title: "FAQ", url: "#" },
-  { title: "About", url: "About" },
+  { title: "About", url: "#" },
 ];
 
 function Header({ user }) {
@@ -36,10 +36,10 @@ function Header({ user }) {
     >
       <Container maxWidth="lg">
         <Toolbar sx={{ alignItems: "center" }}>
-          <LinkRouter to="/">
+          <Link to="/">
             <Avatar src="https://i.postimg.cc/QdNLR1CX/logo-fullsize.png" />
-          </LinkRouter>
-          <LinkRouter
+          </Link>
+          <Link
             to="/"
             css={{
               display: "flex",
@@ -53,7 +53,7 @@ function Header({ user }) {
               alt="logo"
               style={{ width: "6rem" }}
             />
-          </LinkRouter>
+          </Link>
           <TextField label="아이템 검색하기" size="small" sx={{ flex: 3 }} />
           <IconButton>
             <SearchIcon />
@@ -68,14 +68,13 @@ function Header({ user }) {
               size="small"
               sx={{ textDecoration: "none" }}
               onClick={() => {
-                console.log("ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇ");
-                dispatch(signoutLequest());
+                dispatch(signoutRequest());
               }}
             >
               LOG OUT
             </Button>
           ) : (
-            <LinkRouter to="/signup">
+            <Link to="/signup">
               <Button
                 variant="outlined"
                 size="small"
@@ -83,7 +82,7 @@ function Header({ user }) {
               >
                 Sign up
               </Button>
-            </LinkRouter>
+            </Link>
           )}
         </Toolbar>
         <Toolbar
@@ -92,17 +91,20 @@ function Header({ user }) {
           sx={{ justifyContent: "space-between", overflowX: "auto" }}
         >
           {sections.map((section) => (
-            <LinkRouter to={`/${section.url}`}>
-              <Link
-                color="inherit"
-                noWrap
-                key={section.title}
-                variant="body2"
-                sx={{ p: 1, flexShrink: 0 }}
-              >
-                {section.title}
-              </Link>
-            </LinkRouter>
+            <Link
+              to={`/${section.url}`}
+              key={section.title}
+              style={{
+                flex: 1,
+                height: "3rem",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                flexShrink: 0,
+              }}
+            >
+              {section.title}
+            </Link>
           ))}
         </Toolbar>
       </Container>
