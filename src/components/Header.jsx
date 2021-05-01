@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import { Avatar, Container, TextField } from "@material-ui/core";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { signoutLequest } from "../modules/login";
+import { signoutRequest } from "../modules/user";
 
 const sections = [
   { title: "Market", url: "market" },
@@ -68,7 +68,7 @@ function Header({ user }) {
               size="small"
               sx={{ textDecoration: "none" }}
               onClick={() => {
-                dispatch(signoutLequest());
+                dispatch(signoutRequest());
               }}
             >
               LOG OUT

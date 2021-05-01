@@ -2,18 +2,15 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import Signup from "../components/Signup";
-import { signupLequest } from "../modules/login";
+import { signupRequest } from "../modules/user";
 
 const SignupContainer = (props) => {
   const history = useHistory();
-  const user = useSelector((state) => state.login.user);
+  const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
 
   const handleSignup = ({ name, email, password }) => {
-    console.log(name);
-    console.log(email);
-    console.log(password);
-    dispatch(signupLequest({ name, email, password }));
+    dispatch(signupRequest({ name, email, password }));
   };
 
   useEffect(() => {

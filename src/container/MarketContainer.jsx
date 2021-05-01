@@ -4,7 +4,7 @@ import Market from "../components/Market";
 import { clearPost, getProducts } from "../modules/products";
 
 const MarketContainer = (props) => {
-  const user = useSelector((state) => state.login.user);
+  const user = useSelector((state) => state.user.user);
   const { data, loading, error } = useSelector(
     (state) => state.products.products
   );

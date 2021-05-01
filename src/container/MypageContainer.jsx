@@ -2,12 +2,11 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import Mypage from "../components/Mypage";
-import { goLogin } from "../modules/login";
 import { getProducts } from "../modules/products";
 
 const MypageContainer = (props) => {
   const history = useHistory();
-  const user = useSelector((state) => state.login.user);
+  const user = useSelector((state) => state.user.user);
   const { data, loading, error } = useSelector(
     (state) => state.products.products
   );

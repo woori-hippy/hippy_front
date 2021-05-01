@@ -1,16 +1,16 @@
 import { combineReducers } from "redux";
 import products from "./products";
-import login from "./login";
+import user from "./user";
 import { productsSaga } from "./products";
-import { loginSaga } from "./login";
+import { userSaga } from "./user";
 import { all } from "redux-saga/effects";
 
 const rootReducer = combineReducers({
   products,
-  login,
+  user,
 });
 export function* rootSaga() {
-  yield all([productsSaga(), loginSaga()]);
+  yield all([productsSaga(), userSaga()]);
 }
 
 export default rootReducer;

@@ -11,9 +11,7 @@ import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import { useDispatch } from "react-redux";
 import { useRef } from "react";
-import { signupLequest } from "../modules/login";
 
 function Copyright(props) {
   return (

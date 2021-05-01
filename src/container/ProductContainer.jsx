@@ -4,7 +4,7 @@ import Product from "../components/Product";
 import { getProduct } from "../modules/products";
 
 const ProductContainer = ({ productId }) => {
-  const user = useSelector((state) => state.login.user);
+  const user = useSelector((state) => state.user.user);
   const { data, loading, error } = useSelector(
     (state) => state.products.product[productId]
   ) || {
