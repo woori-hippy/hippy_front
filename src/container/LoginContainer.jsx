@@ -6,7 +6,7 @@ import { goMyPage, loginLequest } from "../modules/login";
 
 const LoginContainer = (props) => {
   const history = useHistory();
-  const { user } = useSelector((state) => state.login.user);
+  const user = useSelector((state) => state.login.user);
   const dispatch = useDispatch();
 
   const handleLogin = (email, password) => {
@@ -14,7 +14,7 @@ const LoginContainer = (props) => {
   };
 
   useEffect(() => {
-    history.push("/mypage");
+    if (user.data) history.push("/mypage");
   }, [history, user]);
 
   return <Login onLoginLequest={handleLogin} />;

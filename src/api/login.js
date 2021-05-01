@@ -17,7 +17,7 @@ export const signoutLequest = async () => {
     method: "post",
     url: "/auth/signout",
   });
-  return response.data;
+  return null;
 };
 
 export const signupLequest = async ({ name, email, password }) => {

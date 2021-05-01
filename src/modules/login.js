@@ -2,11 +2,9 @@ import * as loginAPI from "../api/login";
 import {
   reducerUtils,
   handleAsyncActions,
-  handleAsyncActionsById,
   createPromiseSaga,
-  createPromiseSagaById,
 } from "../lib/asyncUtils";
-import { getContext, takeEvery, takeLatest } from "redux-saga/effects";
+import { takeEvery } from "redux-saga/effects";
 
 //TODO 이미지, 태그, 제목을 통해 NFT Product만들기
 const LOGIN_REQUEST = "login/LOGIN_REQUEST";
@@ -51,8 +49,8 @@ const loginLequestSaga = createPromiseSaga(
   loginAPI.loginLequest
 );
 const signoutLequestSaga = createPromiseSaga(
-  SIGNUP_REQUEST,
-  loginAPI.signupLequest
+  SIGNOUT_REQUEST,
+  loginAPI.signoutLequest
 );
 const signupLequestSaga = createPromiseSaga(
   SIGNUP_REQUEST,

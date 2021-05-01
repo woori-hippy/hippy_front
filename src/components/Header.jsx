@@ -9,6 +9,8 @@ import PersonIcon from "@material-ui/icons/Person";
 import Typography from "@material-ui/core/Typography";
 import { Avatar, Container, Link, TextField } from "@material-ui/core";
 import { Link as LinkRouter, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { signoutLequest } from "../modules/login";
 
 const sections = [
   { title: "Market", url: "market" },
@@ -19,6 +21,7 @@ const sections = [
 ];
 
 function Header({ user }) {
+  const dispatch = useDispatch();
   const history = useHistory();
   const handlehistory = (e) => {
     user.data ? history.push("/mypage") : history.push("/login");
@@ -32,20 +35,24 @@ function Header({ user }) {
       }}
     >
       <Container maxWidth="lg">
-        <Toolbar>
+        <Toolbar sx={{ alignItems: "center" }}>
           <LinkRouter to="/">
             <Avatar src="https://i.postimg.cc/QdNLR1CX/logo-fullsize.png" />
           </LinkRouter>
-          <LinkRouter to="/" css={{ flex: 1 }}>
-            <Typography
-              component="h2"
-              variant="h5"
-              color="#1B7EA6"
-              align="left"
-              noWrap
-            >
-              Hippy
-            </Typography>
+          <LinkRouter
+            to="/"
+            css={{
+              display: "flex",
+              flex: 1,
+              alignItems: "center",
+              marginTop: "0.5rem",
+            }}
+          >
+            <img
+              src="https://i.postimg.cc/zfDxr1p3/2021-05-01-10-05-53.png"
+              alt="logo"
+              style={{ width: "6rem" }}
+            />
           </LinkRouter>
           <TextField label="아이템 검색하기" size="small" sx={{ flex: 3 }} />
           <IconButton>
@@ -54,16 +61,30 @@ function Header({ user }) {
           <IconButton onClick={handlehistory}>
             <PersonIcon />
           </IconButton>
-
-          <LinkRouter to="/signup">
+          {user.data ? (
             <Button
+              color="inherit"
               variant="outlined"
               size="small"
               sx={{ textDecoration: "none" }}
+              onClick={() => {
+                console.log("ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇ");
+                dispatch(signoutLequest());
+              }}
             >
-              Sign up
+              LOG OUT
             </Button>
-          </LinkRouter>
+          ) : (
+            <LinkRouter to="/signup">
+              <Button
+                variant="outlined"
+                size="small"
+                sx={{ textDecoration: "none" }}
+              >
+                Sign up
+              </Button>
+            </LinkRouter>
+          )}
         </Toolbar>
         <Toolbar
           component="nav"
