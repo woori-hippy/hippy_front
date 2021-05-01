@@ -1,16 +1,4 @@
 {
-  "user": [
-    {
-      "id": 1,
-      "user_id": "sjsjsj1246",
-      "password": "123456",
-      "author": "sjsjsj1246",
-      "provider": "sjsjsj1246",
-      "email": "sjsjsj1246@gmail.com",
-      "coin_address": "0x23A486432C921453C",
-      "woori_account": "374861327327186"
-    }
-  ],
   "products": [
     {
       "id": 1,
@@ -23,7 +11,7 @@
       "src": "https://lh3.googleusercontent.com/6Gwg5JlQkk95KRTYQ8MfQvVhxfx5MrP43RnAvA6X8GAcowkuMWJlAekeBmXLMpQ-iS-cWmnp_LRsowD2-XHSwt58w5BOYc6OxwM9Hw=s382",
       "name": "sjsjsj1246#3",
       "tag": "Digital Art",
-      "star": 0
+      "star": 3
     },
     {
       "id": 2,
@@ -36,7 +24,7 @@
       "src": "https://lh3.googleusercontent.com/4LK2jwF0zccunZmiQF8wJfN_bzG9H2YvlR7qGlfL49Zz3NCOz1Y-QkCV3zV_mJXMD0FLpfRro9p-UDxYNZIg3uhGp7enzO12pgSlAg=s382",
       "name": "Dem Shabby",
       "tag": "Digital Art",
-      "star": 0
+      "star": 1
     },
     {
       "id": 3,
@@ -49,7 +37,7 @@
       "src": "https://lh3.googleusercontent.com/49olzRAE_nHHMEOztGz0NJx6WGJusEdIFLhJ9U-uwv7GLJ3f3XssAEq8cwmTiZNYMNBNgeeXn8jtbX2u4VcvlH2PYxU8aEP3ahL-=s305",
       "name": "Bugger",
       "tag": "Animation",
-      "star": 0
+      "star": 1
     },
     {
       "id": 4,
@@ -62,7 +50,7 @@
       "src": "https://lh3.googleusercontent.com/eznuFQhTekHHH356-M4CYsCUcb7kVJQdSUDfR-gPpKB2enWZBhY9XZJ4r_oS0PopmqpkkS63IKSbsCHSt99ge9Uv26z_kfj6HRrgF5g=s305",
       "name": "Unicode",
       "tag": "Digital Art",
-      "star": 0
+      "star": 3
     },
     {
       "id": 5,
@@ -75,7 +63,7 @@
       "src": "https://lh3.googleusercontent.com/OydRcusKdxFUo3VEO8s3JPaldDAoRgw51ThoeekgtS14uqU9QrGHDd6JT7gticLH15j_0PMH_1bkFaAbTKdiXLmpU1HpaCGgUIDp0g=s305",
       "name": "Elon Musk",
       "tag": "Animation",
-      "star": 0
+      "star": 6
     },
     {
       "id": 6,
@@ -88,7 +76,7 @@
       "src": "https://lh3.googleusercontent.com/17vU_UNWeMOVi4XOAwo4nvAXpeg1dnKPBk8VnAhJcFHOFZ9UBBvSL5Spj0ytvyfII3rdp4gHMY0mMvbnSzjdOZ0=s283",
       "name": "Land",
       "tag": "Virtual Reality",
-      "star": 0
+      "star": 6
     },
     {
       "id": 7,
@@ -115,15 +103,6 @@
       "name": "Land",
       "tag": "Digital Art",
       "star": 0
-    }
-  ],
-  "action": [
-    {
-      "id": 1,
-      "product_id": "sjsjsj1246",
-      "user_id": "sjsjsj1246",
-      "price": "10000",
-      "created_at": "20210429"
     }
   ]
 }

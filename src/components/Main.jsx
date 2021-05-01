@@ -33,10 +33,10 @@ const featuredPosts = [
   },
 ];
 
-export default function Main({ products, onCreate, onDelete }) {
+export default function Main({ products, loading, user }) {
   return (
     <React.Fragment>
-      <Header title="Hippy" />
+      <Header user={user} />
       <Container maxWidth="lg">
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />

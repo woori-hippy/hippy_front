@@ -30,7 +30,7 @@ const activeTypo = (sort, state, title) => {
   );
 };
 
-const Market = ({ products, loading }) => {
+const Market = ({ products, loading, user }) => {
   const [tag, setTag] = useState("All");
   const [sort, setSort] = useState("latest");
 
@@ -44,7 +44,7 @@ const Market = ({ products, loading }) => {
 
   return (
     <React.Fragment>
-      <Header />
+      <Header user={user} />
       <Grid container>
         <Grid
           item

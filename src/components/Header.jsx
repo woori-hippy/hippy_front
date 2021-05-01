@@ -8,7 +8,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import PersonIcon from "@material-ui/icons/Person";
 import Typography from "@material-ui/core/Typography";
 import { Avatar, Container, Link, TextField } from "@material-ui/core";
-import { Link as LinkRouter } from "react-router-dom";
+import { Link as LinkRouter, useHistory } from "react-router-dom";
 
 const sections = [
   { title: "Market", url: "market" },
@@ -18,7 +18,11 @@ const sections = [
   { title: "About", url: "About" },
 ];
 
-function Header() {
+function Header({ user }) {
+  const history = useHistory();
+  const handlehistory = (e) => {
+    user.data ? history.push("/mypage") : history.push("/login");
+  };
   return (
     <div
       css={{
@@ -47,11 +51,10 @@ function Header() {
           <IconButton>
             <SearchIcon />
           </IconButton>
-          <LinkRouter to="/mypage">
-            <IconButton>
-              <PersonIcon />
-            </IconButton>
-          </LinkRouter>
+          <IconButton onClick={handlehistory}>
+            <PersonIcon />
+          </IconButton>
+
           <LinkRouter to="/signup">
             <Button
               variant="outlined"
