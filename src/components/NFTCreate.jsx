@@ -5,11 +5,9 @@ import Footer from "./Footer.jsx";
 import Grid from "@material-ui/core/Grid";
 import { Typography, Box, Button } from "@material-ui/core";
 import ImageUploader from "react-images-upload";
-
 import IpfsApi from "ipfs-api";
-import { ConstructionOutlined } from "@material-ui/icons";
 
-export default function NFTCreate() {
+export default function NFTCreate({ user }) {
   // connect to ipfs daemon API server
   const ipfsApi = IpfsApi({
     host: "ipfs.infura.io",
@@ -25,18 +23,18 @@ export default function NFTCreate() {
   const [file, setFile] = React.useState([]);
 
   React.useEffect(() => {
-    ipfsApi.files.add(uploadedFileInfo.buffer, (error, result) => {
-      if (error) {
-        console.error(error);
-        return;
-      } else {
-        setUploadedFileInfo({
-          ...uploadedFileInfo,
-          ipfsHash: result[0].hash,
-        });
-        console.log(result[0].hash); // 추출된 해시값
-      }
-    });
+    if (uploadedFileInfo.buffer) {
+      ipfsApi.files
+        .add(uploadedFileInfo.buffer)
+        .then((result) => {
+          setUploadedFileInfo({
+            ...uploadedFileInfo,
+            ipfsHash: result[0].hash,
+          });
+          console.log(result[0].hash); // 추출된 해시값
+        })
+        .catch((error) => console.log(error));
+    }
   }, [uploadedFileInfo.buffer]);
 
   const onCreateNFT = () => {
@@ -71,11 +69,15 @@ export default function NFTCreate() {
 
   return (
     <React.Fragment>
-      <Header title="Hippy" />
+      <Header user={user} />
       <Container maxWidth="md">
         <mypage>
           <Box>
-            <Grid container spacing={2}>
+            <Grid
+              container
+              spacing={2}
+              sx={{ display: "flex", flexDirection: "row" }}
+            >
               <Grid item xs={12}>
                 <Typography
                   component="h2"
@@ -133,7 +135,7 @@ export default function NFTCreate() {
           </Box>
         </mypage>
       </Container>
-      <Footer title="Hippy" description="Hippy" />
+      <Footer />
     </React.Fragment>
   );
 }

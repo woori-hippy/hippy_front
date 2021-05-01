@@ -12,6 +12,7 @@ import { useCookies } from "react-cookie";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { profileLequest } from "./modules/login";
+import BankAccountRegisterPage from "./pages/BankAccountRegisterPage";
 
 function App() {
   const [session, setSession, removeSession] = useCookies(["connect.sid"]);
@@ -31,8 +32,9 @@ function App() {
         <Route path="/mypage" component={MypagePage} />
         <Route path="/signup" component={SignupPage} />
         <Route path="/market" component={MarketPage} />
-        <Route path="/createnft" component={NFTCreatePage} />
         <Route path="/product/:id" component={ProductPage} />
+        <Route path="/createnft" component={NFTCreatePage} />
+        <Route path="/register" component={BankAccountRegisterPage} />
       </Switch>
     </BrowserRouter>
   );

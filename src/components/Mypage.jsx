@@ -7,6 +7,8 @@ import ProductThumb from "./ProductThumb";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
+import CheckIcon from "@material-ui/icons/Check";
+import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 
 const activeTypo = (nft, state, title) => {
   return nft === state ? (
@@ -86,16 +88,18 @@ export default function Mypage({ products, user }) {
               </Grid>
               <Grid item container spacing={2}>
                 <Grid item>
-                  <Button
-                    size="small"
-                    variant="contained"
-                    disableElevation
-                    sx={{
-                      backgroundColor: "#16669A",
-                    }}
-                  >
-                    은행 계좌 등록
-                  </Button>
+                  <Link to="/register">
+                    <Button
+                      size="small"
+                      variant="contained"
+                      disableElevation
+                      sx={{
+                        backgroundColor: "#16669A",
+                      }}
+                    >
+                      은행 계좌 등록
+                    </Button>
+                  </Link>
                 </Grid>
                 <Grid item>
                   <Link to="/createnft">
