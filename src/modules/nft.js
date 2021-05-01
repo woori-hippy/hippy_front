@@ -9,8 +9,8 @@ import {
 import { takeEvery } from "redux-saga/effects";
 
 const CREATE_NFT = "nft/CREATE_NFT";
-const CREATE_NFT_SUCCESS = "nft/CREATE_NFT";
-const CREATE_NFT_ERROR = "nft/CREATE_NFT";
+const CREATE_NFT_SUCCESS = "nft/CREATE_NFT_SUCCESS";
+const CREATE_NFT_ERROR = "nft/CREATE_NFT_ERROR";
 
 const ESTIMATE_GAS = "nft/ESTIMATE_GAS";
 const ESTIMATE_GAS_SUCCESS = "nft/ESTIMATE_GAS_SUCCESS";

@@ -1,49 +1,21 @@
-import * as React from "react";
+/** @jsxImportSource @emotion/react */
+import { jsx, css } from "@emotion/react";
+import React, { useEffect, useRef, useState } from "react";
 import Container from "@material-ui/core/Container";
 import Header from "./Header";
 import Footer from "./Footer.jsx";
 import Grid from "@material-ui/core/Grid";
 import { Typography, Box, Button } from "@material-ui/core";
 import ImageUploader from "react-images-upload";
-import IpfsApi from "ipfs-api";
-import { useDispatch } from "react-redux";
-import { createNFT } from "../modules/nft";
+import { getHash } from "../api/ipfs";
+import { useHistory } from "react-router";
 
-export default function NFTCreate({ user }) {
-  const dispatch = useDispatch();
-  // connect to ipfs daemon API server
-  const ipfsApi = IpfsApi({
-    host: "ipfs.infura.io",
-    port: 5001,
-    protocol: "https",
-  });
-
-  // state
-  const [uploadedFileInfo, setUploadedFileInfo] = React.useState({
-    buffer: null,
-    ipfsHash: "",
-  });
-  const [file, setFile] = React.useState([]);
-
-  React.useEffect(() => {
-    if (uploadedFileInfo.buffer) {
-      ipfsApi.files
-        .add(uploadedFileInfo.buffer)
-        .then((result) => {
-          setUploadedFileInfo({
-            ...uploadedFileInfo,
-            ipfsHash: result[0].hash,
-          });
-          dispatch(createNFT(result[0].hash));
-          console.log(result[0].hash); // 추출된 해시값
-        })
-        .catch((error) => console.log(error));
-    }
-  }, [uploadedFileInfo.buffer]);
-
-  const onCreateNFT = () => {
-    captureFile();
-  };
+export default function NFTCreate({ user, onCreateNFT }) {
+  const history = useHistory();
+  const btnRef = useRef();
+  const [buffer, setBuffer] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [file, setFile] = useState([]);
 
   const onDrop = (file) => {
     setFile({
@@ -55,24 +27,66 @@ export default function NFTCreate({ user }) {
     }
   };
 
-  let btnRef = React.useRef();
-
-  // 업로드한 파일의 크기 체크 및 저장
   const captureFile = () => {
     const uploadedFile = file.file[0];
     const reader = new window.FileReader();
     reader.readAsArrayBuffer(uploadedFile);
 
     reader.onloadend = () => {
-      setUploadedFileInfo({
-        ...uploadedFileInfo,
-        buffer: Buffer(reader.result),
-      });
+      setBuffer(Buffer(reader.result));
     };
   };
 
+  useEffect(() => {
+    if (buffer) {
+      getHash(buffer, setLoading).then((ipfsHash) => {
+        onCreateNFT(ipfsHash);
+        history.push("/mypage");
+      });
+    }
+  }, [buffer]);
+
   return (
     <React.Fragment>
+      {loading && (
+        <div
+          css={css`
+            z-index: 10;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.3);
+          `}
+        >
+          <div
+            css={css`
+              width: 5rem;
+              height: 5rem;
+              border-radius: 50%;
+              border: 5px solid gray;
+              border-top: 5px solid #3887a6;
+              border-right: 5px solid #60a4bf;
+              border-bottom: 5px solid #a0c9d9;
+              border-bottom: 5px solid transparent;
+              animation: spin 2s linear infinite;
+
+              @keyframes spin {
+                0% {
+                  transform: rotate(0deg);
+                }
+                100% {
+                  transform: rotate(360deg);
+                }
+              }
+            `}
+          ></div>
+        </div>
+      )}
       <Header user={user} />
       <Container maxWidth="md">
         <Grid
@@ -128,7 +142,7 @@ export default function NFTCreate({ user }) {
               }}
               variant="contained"
               size="large"
-              onClick={onCreateNFT}
+              onClick={captureFile}
             >
               NFT 생성하기!
             </Button>
