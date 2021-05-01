@@ -1,6 +1,5 @@
 import { CssBaseline } from "@material-ui/core";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Mypage from "./components/Mypage";
 import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import MarketPage from "./pages/MarketPage";

@@ -38,5 +38,5 @@ export const profileLequest = async () => {
     method: "get",
     url: "/profile",
   });
-  return response.data.userInfo;
+  return response.data.user;
 };

@@ -1,8 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import BankAccountRegister from "../components/BankAccountRegister";
 
 const BankAccountRegisterContainer = (props) => {
-  return <BankAccountRegister />;
+  const user = useSelector((state) => state.login.user);
+  return <BankAccountRegister user={user} />;
 };
 
 export default BankAccountRegisterContainer;
