@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { profileLequest } from "./modules/login";
 import BankAccountRegisterPage from "./pages/BankAccountRegisterPage";
+import * as woori from "./api/woori";
 
 function App() {
   const [session, setSession, removeSession] = useCookies(["connect.sid"]);
@@ -23,6 +24,23 @@ function App() {
     if (session) dispath(profileLequest());
   }, [dispath, session]);
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    const account = {
+      COMC_DIS: "3",
+      HP_NO: "01023963177",
+      HP_CRTF_AGR_YN: "Y",
+      FNM: "김건훈",
+      RRNO_BFNB: "980325",
+      ENCY_RRNO_LSNM: "1218815",
+    };
+    woori.wooriTokenRequest(account).then((data) => {
+      console.log(data);
+      woori.allAcountRequest(data.CRTF_UNQ_NO).then((data) => {
+        console.log(data);
+      });
+    });
+  };
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <CssBaseline />
@@ -35,6 +53,9 @@ function App() {
         <Route path="/product/:id" component={ProductPage} />
         <Route path="/createnft" component={NFTCreatePage} />
         <Route path="/register" component={BankAccountRegisterPage} />
+        <Route path="/test">
+          <button onClick={handleClick}>API TEST</button>
+        </Route>
       </Switch>
     </BrowserRouter>
   );

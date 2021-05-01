@@ -33,19 +33,23 @@ function Copyright(props) {
   );
 }
 
-export default function Signup() {
-  const dispatch = useDispatch();
+export default function Signup({ onSignup }) {
   const firstNameRef = useRef();
   const lastNameRef = useRef();
   const emailRef = useRef();
   const passworldRef = useRef();
+
   const handleSignup = (e) => {
+    e.preventDefault();
     const firstName = firstNameRef.current.value;
     const lastName = lastNameRef.current.value;
     const name = firstName + lastName;
     const email = emailRef.current.value;
     const password = emailRef.current.value;
-    dispatch(signupLequest({ name, email, password }));
+    console.log(name);
+    console.log(email);
+    console.log(password);
+    onSignup({ name, email, password });
   };
   return (
     <Container component="main" maxWidth="xs">
@@ -82,7 +86,7 @@ export default function Signup() {
                 id="firstName"
                 label="First Name"
                 autoFocus
-                ref={firstNameRef}
+                inputRef={firstNameRef}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -93,7 +97,7 @@ export default function Signup() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
-                ref={lastNameRef}
+                inputRef={lastNameRef}
               />
             </Grid>
             <Grid item xs={12}>
@@ -104,7 +108,7 @@ export default function Signup() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
-                ref={emailRef}
+                inputRef={emailRef}
               />
             </Grid>
             <Grid item xs={12}>
@@ -116,7 +120,7 @@ export default function Signup() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                ref={passworldRef}
+                inputRef={passworldRef}
               />
             </Grid>
             <Grid item xs={12}>

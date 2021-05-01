@@ -6,6 +6,7 @@ import { goLogin } from "../modules/login";
 import { getProducts } from "../modules/products";
 
 const MypageContainer = (props) => {
+  const history = useHistory();
   const user = useSelector((state) => state.login.user);
   const { data, loading, error } = useSelector(
     (state) => state.products.products
@@ -15,6 +16,10 @@ const MypageContainer = (props) => {
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (!user.data) history.push("/");
+  }, [history, user]);
 
   if (loading && !data) return <div>로딩중...</div>;
   if (error) return <div>에러 발생!</div>;

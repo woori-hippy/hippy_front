@@ -60,7 +60,7 @@ const Footer = () => {
             ml={5}
           >
             <Typography>
-              Hippy는  non-fungible tokens (NFT)을 이용해 디지털 예술가들이
+              Hippy는  non-fungible tokens (NFT)을 이용한 디지털 예술가들이
               안전하게 창작물을 거래할 수 있는 플랫폼입니다. 디지털 작품들을
               안전하게 사고 팔고 소유하세요
             </Typography>
