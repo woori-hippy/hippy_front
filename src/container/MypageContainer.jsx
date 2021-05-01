@@ -1,13 +1,18 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 import Mypage from "../components/Mypage";
+import { goLogin } from "../modules/login";
 import { getProducts } from "../modules/products";
 
 const MypageContainer = (props) => {
+  const user = useSelector((state) => state.login.user);
   const { data, loading, error } = useSelector(
     (state) => state.products.products
   );
   const dispatch = useDispatch();
+
+  if (!user.data) dispatch(goLogin());
 
   // 컴포넌트 마운트 후 포스트 목록 요청
   useEffect(() => {

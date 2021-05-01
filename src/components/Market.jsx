@@ -14,12 +14,13 @@ import {
   RadioGroup,
   Typography,
 } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import ProductThumb from "./ProductThumb";
+import SkeletonThumb from "./SkeletonThumb";
 
 const activeTypo = (sort, state, title) => {
   return sort === state ? (
@@ -29,10 +30,13 @@ const activeTypo = (sort, state, title) => {
   );
 };
 
-const Market = ({ products }) => {
+const Market = ({ products, loading }) => {
   const [tag, setTag] = useState("All");
   const [sort, setSort] = useState("latest");
 
+  useEffect(() => {
+    console.log(loading);
+  }, [loading]);
   const handleTagChange = (event) => {
     setTag(event.target.value);
     console.log(sort);
@@ -158,21 +162,23 @@ const Market = ({ products }) => {
               width: "100%",
               display: "grid",
               gridTemplateColumns:
-                "repeat(auto-fit, minmax(210px, max-content))",
-              gridGap: "16px",
+                "repeat(auto-fit, minmax(15rem, max-content))",
+              gridGap: "1rem",
               justifyContent: "center",
               padding: "initial",
             }}
           >
-            {products.map((product) =>
-              product.tag === tag ? (
-                <Box>
-                  <ProductThumb product={product} />
-                </Box>
-              ) : tag === "All" ? (
-                <ProductThumb product={product} />
-              ) : null
-            )}
+            {loading
+              ? [1, 2, 3, 4, 5, 6, 7, 8].map(() => <SkeletonThumb />)
+              : products.map((product) =>
+                  product.tag === tag ? (
+                    <Box>
+                      <ProductThumb product={product} />
+                    </Box>
+                  ) : tag === "All" ? (
+                    <ProductThumb product={product} />
+                  ) : null
+                )}
           </Box>
         </Grid>
       </Grid>

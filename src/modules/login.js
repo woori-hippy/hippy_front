@@ -18,7 +18,7 @@ const SIGNUP_REQUES_ERRORT = "login/SIGNUP_REQUES_ERRORT";
 const GO_MY_PAGE = "login/GO_MY_PAGE";
 const GO_LOGIN = "login/GO_LOGIN";
 
-export const loginLequest = ({ email, password }) => ({
+export const loginLequest = (email, password) => ({
   type: LOGIN_REQUEST,
   payload: {
     email: email,
@@ -40,7 +40,7 @@ export const goLogin = () => ({ type: GO_LOGIN });
 
 const loginLequestSaga = createPromiseSaga(
   LOGIN_REQUEST,
-  loginAPI.LoginLequest
+  loginAPI.loginLequest
 );
 const signUpLequestSaga = createPromiseSaga(
   SIGNUP_REQUEST,

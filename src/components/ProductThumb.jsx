@@ -1,8 +1,5 @@
-/** @jsxImportSource @emotion/react */
-import { jsx, css } from "@emotion/react";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import {
-  Box,
   Card,
   CardActionArea,
   CardContent,
@@ -13,12 +10,12 @@ import {
 import React from "react";
 import { Link } from "react-router-dom";
 
-const NftThumb = ({ product }) => {
+const ProductThumb = ({ product }) => {
   return (
-    <Link to={`/product/${product.id}`}>
+    <Link to={`/product/${product.id}`} css={{ width: "fit-content" }}>
       <Card
         sx={{
-          maxWidth: "15rem",
+          width: "15rem",
           boxShadow: "2px 3px 10px 0px rgba(117,117,117,0.5)",
         }}
       >
@@ -97,4 +94,4 @@ const NftThumb = ({ product }) => {
   );
 };
 
-export default React.memo(NftThumb);
+export default React.memo(ProductThumb);

@@ -33,14 +33,15 @@ function Copyright(props) {
   );
 }
 
-export default function Login() {
-  const dispatch = useDispatch();
+export default function Login({ onLoginLequest }) {
   const emailRef = useRef();
   const pwdRef = useRef();
+
   const handleLogin = (e) => {
+    e.preventDefault();
     const email = emailRef.current.value;
-    const password = emailRef.current.value;
-    dispatch(loginLequest({ email, password }));
+    const password = pwdRef.current.value;
+    onLoginLequest(email, password);
   };
 
   return (
@@ -77,7 +78,7 @@ export default function Login() {
             name="email"
             autoComplete="email"
             autoFocus
-            ref={emailRef}
+            inputRef={emailRef}
           />
           <TextField
             margin="normal"
@@ -88,7 +89,7 @@ export default function Login() {
             type="password"
             id="password"
             autoComplete="current-password"
-            ref={pwdRef}
+            inputRef={pwdRef}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}

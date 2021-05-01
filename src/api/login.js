@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export const LoginLequest = async ({ email, password }) => {
+export const loginLequest = async ({ email, password }) => {
   const response = await axios({
     method: "post",
-    url: "hi",
+    url: "/auth/signin",
     data: {
       email: email,
       password: password,
@@ -15,7 +15,7 @@ export const LoginLequest = async ({ email, password }) => {
 export const signupLequest = async ({ name, email, password }) => {
   const response = await axios({
     method: "post",
-    url: "hi",
+    url: "/auth/signup",
     data: {
       name: name,
       email: email,
