@@ -7,6 +7,7 @@ import MarketPage from "./pages/MarketPage";
 import MypagePage from "./pages/MypagePage";
 import ProductPage from "./pages/ProductPage";
 import SignupPage from "./pages/SignupPage";
+import NFTCreatePage from "./pages/NFTCreatePage"
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/mypage" component={LoginPage} />
         <Route exact path="/market" component={MarketPage} />
         <Route exact path="/product/:id" component={ProductPage} />
+        <Route exact path="/create" component={NFTCreatePage} />
       </Switch>
     </BrowserRouter>
   );
