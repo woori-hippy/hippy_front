@@ -53,23 +53,25 @@ export default function Mypage({ products }) {
                     <Typography sx={{ fontSize: "1rem", marginLeft: "2rem" }}>
                       <PhoneIcon fontSize="1rem" /> 010-2352-0300
                     </Typography>
-                    <Button
-                      variant="contained"
-                      disableElevation
-                      sx={{
-                        width: "13rem",
-                        backgroundColor: "#16669A",
-                        marginTop: "1rem",
-                        marginLeft: "2rem",
-                        borderRadius: "50px",
-                        padding: "0.5rem 3rem",
-                        fontWeight: "bold",
-                        backgroundColor: "#3887A6"
-                      }}
-                      endIcon={<CheckIcon />}
-                    >
-                      은행 계좌 등록
-                    </Button>
+                    <LinkRouter to="/register">
+                      <Button
+                        variant="contained"
+                        disableElevation
+                        sx={{
+                          width: "13rem",
+                          backgroundColor: "#16669A",
+                          marginTop: "1rem",
+                          marginLeft: "2rem",
+                          borderRadius: "50px",
+                          padding: "0.5rem 3rem",
+                          fontWeight: "bold",
+                          backgroundColor: "#3887A6"
+                        }}
+                        endIcon={<CheckIcon />}
+                      >
+                        은행 계좌 등록
+                      </Button>
+                    </LinkRouter>
                     <LinkRouter to="/create">
                       <Button
                         variant="contained"
