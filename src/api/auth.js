@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const loginRequest = async ({ email, password }) => {
+export const login = async ({ email, password }) => {
   const response = await axios({
     method: "post",
     url: "/auth/signin",
@@ -12,7 +12,7 @@ export const loginRequest = async ({ email, password }) => {
   return response.data;
 };
 
-export const signoutRequest = async () => {
+export const signout = async () => {
   const response = await axios({
     method: "post",
     url: "/auth/signout",
@@ -20,7 +20,7 @@ export const signoutRequest = async () => {
   return null;
 };
 
-export const signupRequest = async ({ name, email, password }) => {
+export const signup = async ({ name, email, password }) => {
   const response = await axios({
     method: "post",
     url: "/auth/signup",
