@@ -48,7 +48,8 @@ const Market = ({ products, loading, user }) => {
       <Grid container>
         <Grid
           item
-          xs={2}
+          xs={12}
+          md={2}
           sx={{ borderRight: "1px solid #E0E0E0", paddingRight: "0.2rem" }}
         >
           <List component="nav" aria-label="main mailbox folders">
@@ -136,7 +137,7 @@ const Market = ({ products, loading, user }) => {
             </FormControl>
           </List>
         </Grid>
-        <Grid container item xs={10} sx={{ padding: "0 1rem" }}>
+        <Grid container item xs={12} md={10} sx={{ padding: "0 1rem" }}>
           <Grid
             xs={12}
             sx={{ margin: "0.5rem 0 2rem 0", backgroundColor: "#F0F0F0" }}

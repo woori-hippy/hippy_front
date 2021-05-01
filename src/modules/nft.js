@@ -1,4 +1,4 @@
-import * as productsAPI from "../api/products";
+import * as nftAPI from "../api/nft";
 import {
   reducerUtils,
   handleAsyncActions,
@@ -25,12 +25,16 @@ export const estimateGas = (ipfsHash) => ({
   payload: ipfsHash,
 });
 
+const createNFTSaga = createPromiseSaga(CREATE_NFT, nftAPI.createNFT);
+const estimateGasSaga = createPromiseSaga(ESTIMATE_GAS, nftAPI.estimateGas);
+
 export function* nftSaga() {
-  yield takeEvery(CREATE_NFT, createNFT);
-  yield takeEvery(ESTIMATE_GAS, estimateGas);
+  yield takeEvery(CREATE_NFT, createNFTSaga);
+  yield takeEvery(ESTIMATE_GAS, estimateGasSaga);
 }
 
 const initialState = {
+  message: reducerUtils.initial(),
   nft: reducerUtils.initial(),
 };
 
@@ -39,11 +43,11 @@ export default function nft(state = initialState, action) {
     case CREATE_NFT:
     case CREATE_NFT_SUCCESS:
     case CREATE_NFT_ERROR:
-      return handleAsyncActions(CREATE_NFT, "")(state, action);
+      return handleAsyncActions(CREATE_NFT, "message")(state, action);
     case ESTIMATE_GAS:
     case ESTIMATE_GAS_SUCCESS:
     case ESTIMATE_GAS_ERROR:
-      return handleAsyncActions(ESTIMATE_GAS, "")(state, action);
+      return handleAsyncActions(ESTIMATE_GAS, "message")(state, action);
     default:
       return state;
   }

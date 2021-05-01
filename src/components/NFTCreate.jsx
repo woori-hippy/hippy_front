@@ -6,8 +6,11 @@ import Grid from "@material-ui/core/Grid";
 import { Typography, Box, Button } from "@material-ui/core";
 import ImageUploader from "react-images-upload";
 import IpfsApi from "ipfs-api";
+import { useDispatch } from "react-redux";
+import { createNFT } from "../modules/nft";
 
 export default function NFTCreate({ user }) {
+  const dispatch = useDispatch();
   // connect to ipfs daemon API server
   const ipfsApi = IpfsApi({
     host: "ipfs.infura.io",
@@ -31,6 +34,7 @@ export default function NFTCreate({ user }) {
             ...uploadedFileInfo,
             ipfsHash: result[0].hash,
           });
+          dispatch(createNFT(result[0].hash));
           console.log(result[0].hash); // 추출된 해시값
         })
         .catch((error) => console.log(error));
