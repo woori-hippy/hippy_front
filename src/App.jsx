@@ -5,25 +5,36 @@ import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import MarketPage from "./pages/MarketPage";
 import MypagePage from "./pages/MypagePage";
+import NFTCreatePage from "./pages/NFTCreatePage";
 import ProductPage from "./pages/ProductPage";
 import SignupPage from "./pages/SignupPage";
-import NFTCreatePage from "./pages/NFTCreatePage"
-import BankAccountRegisterPage from "./pages/BankAccountRegisterPage"
+import { useCookies } from "react-cookie";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { profileLequest } from "./modules/login";
+import BankAccountRegisterPage from "./pages/BankAccountRegisterPage";
 
 function App() {
+  const [session, setSession, removeSession] = useCookies(["connect.sid"]);
+  const dispath = useDispatch();
+
+  useEffect(() => {
+    console.log(session);
+    if (session) dispath(profileLequest());
+  }, [dispath, session]);
+
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <CssBaseline />
       <Switch>
         <Route exact path="/" component={MainPage} />
-        <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/mypage" component={MypagePage} />
-        <Route exact path="/signup" component={SignupPage} />
-        <Route exact path="/mypage" component={LoginPage} />
-        <Route exact path="/market" component={MarketPage} />
-        <Route exact path="/product/:id" component={ProductPage} />
-        <Route exact path="/create" component={NFTCreatePage} />
-        <Route exact path="/register" component={BankAccountRegisterPage} />
+        <Route path="/login" component={LoginPage} />
+        <Route path="/mypage" component={MypagePage} />
+        <Route path="/signup" component={SignupPage} />
+        <Route path="/market" component={MarketPage} />
+        <Route path="/product/:id" component={ProductPage} />
+        <Route path="/createnft" component={NFTCreatePage} />
+        <Route path="/register" component={BankAccountRegisterPage} />
       </Switch>
     </BrowserRouter>
   );

@@ -13,7 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { useDispatch } from "react-redux";
 import { useRef } from "react";
-import { signUpLequest } from "../modules/login";
+import { signupLequest } from "../modules/login";
 
 function Copyright(props) {
   return (
@@ -45,7 +45,7 @@ export default function Signup() {
     const name = firstName + lastName;
     const email = emailRef.current.value;
     const password = emailRef.current.value;
-    dispatch(signUpLequest({ name, email, password }));
+    dispatch(signupLequest({ name, email, password }));
   };
   return (
     <Container component="main" maxWidth="xs">

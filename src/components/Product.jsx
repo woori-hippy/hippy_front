@@ -1,21 +1,14 @@
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  Paper,
-  Typography,
-} from "@material-ui/core";
+import { Box, Button, Container, Grid, Typography } from "@material-ui/core";
 import ShareIcon from "@material-ui/icons/Share";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 
-const Product = ({ product }) => {
+const Product = ({ product, user }) => {
   return (
     <React.Fragment>
-      <Header />
+      <Header user={user} />
       <Container maxWidth="lg">
         <Grid container spacing={4} pt={2} sx={{ height: "30rem" }}>
           <Grid

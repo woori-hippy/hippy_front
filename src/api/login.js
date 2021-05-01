@@ -12,6 +12,14 @@ export const loginLequest = async ({ email, password }) => {
   return response.data;
 };
 
+export const signoutLequest = async () => {
+  const response = await axios({
+    method: "post",
+    url: "/auth/signout",
+  });
+  return null;
+};
+
 export const signupLequest = async ({ name, email, password }) => {
   const response = await axios({
     method: "post",
@@ -23,4 +31,12 @@ export const signupLequest = async ({ name, email, password }) => {
     },
   });
   return response.data;
+};
+
+export const profileLequest = async () => {
+  const response = await axios({
+    method: "get",
+    url: "/profile",
+  });
+  return response.data.userInfo;
 };

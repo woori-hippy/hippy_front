@@ -4,9 +4,8 @@ import Main from "../components/Main";
 import { getProducts } from "../modules/products";
 
 const MainContainer = (props) => {
-  const { data, loading, error } = useSelector(
-    (state) => state.products.products
-  );
+  const user = useSelector((state) => state.login.user);
+  const products = useSelector((state) => state.products.products);
   const dispatch = useDispatch();
 
   // 컴포넌트 마운트 후 포스트 목록 요청
@@ -15,11 +14,17 @@ const MainContainer = (props) => {
     dispatch(getProducts());
   }, [dispatch]);
 
-  if (loading && !data) return <div>로딩중...</div>; // 로딩중이면서, 데이터가 없을 때에만 로딩중... 표시
-  if (error) return <div>에러 발생!</div>;
-  if (!data) return null;
+  if (products.loading && !products.data) return <div>로딩중...</div>; // 로딩중이면서, 데이터가 없을 때에만 로딩중... 표시
+  if (products.error) return <div>에러 발생!</div>;
+  if (!products.data) return null;
 
-  return <Main products={data} loading={loading && !data} />;
+  return (
+    <Main
+      products={products.data}
+      loading={products.loading && !products.data}
+      user={user}
+    />
+  );
 };
 
 export default MainContainer;

@@ -4,6 +4,7 @@ import Product from "../components/Product";
 import { getProduct } from "../modules/products";
 
 const ProductContainer = ({ productId }) => {
+  const user = useSelector((state) => state.login.user);
   const { data, loading, error } = useSelector(
     (state) => state.products.product[productId]
   ) || {
@@ -23,7 +24,7 @@ const ProductContainer = ({ productId }) => {
   if (error) return <div>에러 발생!</div>;
   if (!data) return null;
 
-  return <Product product={data} />;
+  return <Product product={data} user={user} />;
 };
 
 export default ProductContainer;
