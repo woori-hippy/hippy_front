@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 const ProductThumb = ({ product }) => {
   return (
-    <Link to={`/product/${product.id}`} css={{ width: "fit-content" }}>
+    <Link to={`/product/${product.id}`}>
       <Card
         sx={{
           width: "15rem",
@@ -39,13 +39,13 @@ const ProductThumb = ({ product }) => {
                 margin: "0.5rem 1rem 0.5rem 0.5rem",
               }}
             >
-              {product.star}
+              0
             </Typography>
           </Grid>
           <CardMedia
             sx={{ height: 250, backgroundSize: "contain" }}
             image={product.src}
-            title={product.title}
+            title={product.name}
           />
           <CardContent>
             <Grid container>
@@ -77,7 +77,7 @@ const ProductThumb = ({ product }) => {
               <Grid container item>
                 <Grid item xs={8}>
                   <Typography variant="body2" color="text.secondary">
-                    {product.author}
+                    {product.userId}
                   </Typography>
                 </Grid>
                 <Grid item xs={4}>

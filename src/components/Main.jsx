@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { lazy, Suspense } from "react";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
@@ -8,6 +8,9 @@ import FeaturedPost from "./FeaturedPost.jsx";
 import Footer from "./Footer.jsx";
 import { Box, ImageList, ImageListItem, Typography } from "@material-ui/core";
 import ProductThumb from "./ProductThumb";
+import SkeletonThumb from "./SkeletonThumb";
+
+const LazyThumb = lazy(() => import("./ProductThumb"));
 
 const mainFeaturedPost = {
   title: "share your piece",
@@ -88,7 +91,9 @@ export default function Main({ products, loading, user }) {
                         flex: "0 0 auto",
                       }}
                     >
-                      <ProductThumb product={product} />
+                      <Suspense fallback={<SkeletonThumb />}>
+                        <LazyThumb product={product} />
+                      </Suspense>
                     </ImageListItem>
                   ) : null
                 )}

@@ -4,13 +4,14 @@ import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import MarketPage from "./pages/MarketPage";
 import MypagePage from "./pages/MypagePage";
-import NFTCreatePage from "./pages/NFTCreatePage";
 import ProductPage from "./pages/ProductPage";
 import SignupPage from "./pages/SignupPage";
+import CreateNFTPage from "./pages/CreateNFTPage";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getProfile } from "./modules/user";
 import BankAccountRegisterPage from "./pages/BankAccountRegisterPage";
+import CreateProductPage from "./pages/CreateProductPage";
 
 function App() {
   const dispath = useDispatch();
@@ -28,7 +29,8 @@ function App() {
         <Route path="/signup" component={SignupPage} />
         <Route path="/market" component={MarketPage} />
         <Route path="/product/:id" component={ProductPage} />
-        <Route path="/createnft" component={NFTCreatePage} />
+        <Route path="/createnft" component={CreateNFTPage} />
+        <Route path="/createproduct" component={CreateProductPage} />
         <Route path="/register" component={BankAccountRegisterPage} />
       </Switch>
     </BrowserRouter>
