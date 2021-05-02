@@ -3,7 +3,7 @@ import axios from "axios";
 export const login = async ({ email, password }) => {
   const response = await axios({
     method: "post",
-    url: "/auth/signin",
+    url: "/api/auth/signin",
     data: {
       email: email,
       password: password,
@@ -15,7 +15,7 @@ export const login = async ({ email, password }) => {
 export const signout = async () => {
   const response = await axios({
     method: "post",
-    url: "/auth/signout",
+    url: "/api/auth/signout",
   });
   return null;
 };
@@ -23,7 +23,7 @@ export const signout = async () => {
 export const signup = async ({ name, email, password }) => {
   const response = await axios({
     method: "post",
-    url: "/auth/signup",
+    url: "/api/auth/signup",
     data: {
       name: name,
       email: email,
