@@ -81,12 +81,12 @@ export default function Mypage({ products, nftProfile, user }) {
               spacing={2}
             >
               <Grid item>
-                <Typography variant="h3">황인서</Typography>
+                <Typography variant="h3">{user.data.name}</Typography>
               </Grid>
               <Grid item container alignItems="center">
                 <MailOutlineIcon fontSize="large" />
                 <Typography sx={{ fontSize: "1.2rem", marginLeft: "0.5rem" }}>
-                  sjsjsj1246@gmail.com
+                  {user.data.email}
                 </Typography>
               </Grid>
               <Grid item container spacing={2}>
@@ -97,7 +97,7 @@ export default function Mypage({ products, nftProfile, user }) {
                       variant="contained"
                       disableElevation
                       sx={{
-                        backgroundColor: "#16669A",
+                        backgroundColor: "#1B7EA6",
                       }}
                     >
                       은행 계좌 등록
@@ -111,7 +111,7 @@ export default function Mypage({ products, nftProfile, user }) {
                       variant="contained"
                       disableElevation
                       sx={{
-                        backgroundColor: "#16669A",
+                        backgroundColor: "#1B7EA6",
                       }}
                     >
                       NFT 생성하기

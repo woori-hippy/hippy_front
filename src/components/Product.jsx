@@ -5,12 +5,12 @@ import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 
-const Product = ({ product, user }) => {
+const Product = ({ product, user, handleBuyProduct }) => {
   return (
     <React.Fragment>
       <Header user={user} />
       <Container maxWidth="lg">
-        <Grid container spacing={4} pt={2} sx={{ height: "30rem" }}>
+        <Grid container spacing={4} pt={2}>
           <Grid
             item
             xs={12}
@@ -33,7 +33,16 @@ const Product = ({ product, user }) => {
               }}
             />
           </Grid>
-          <Grid item container xs={12} md={8} direction="column" spacing={4}>
+          <Grid
+            item
+            container
+            xs={10}
+            md={7}
+            direction="column"
+            spacing={4}
+            alignItems="flex-end"
+            sx={{ margin: "0 auto" }}
+          >
             <Grid item container spacing={2} sx={{ marginTop: "1rem" }}>
               <Grid item container direction="column" xs={10}>
                 <Grid item>
@@ -60,10 +69,15 @@ const Product = ({ product, user }) => {
               </Grid>
             </Grid>
             <Grid item spacing={2}>
-              <Typography variant="h3">{product.price}</Typography>
+              <Typography variant="h4">{`${product.price}원`}</Typography>
             </Grid>
             <Grid item>
-              <Button variant="contained" disableElevation>
+              <Button
+                variant="contained"
+                disableElevation
+                onClick={handleBuyProduct}
+                sx={{ color: "white", backgroundColor: "#1B7EA6" }}
+              >
                 구매
               </Button>
             </Grid>
