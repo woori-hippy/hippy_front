@@ -10,7 +10,7 @@ import ImageUploader from "react-images-upload";
 import { getHash } from "../api/ipfs";
 import { useHistory } from "react-router";
 
-export default function NFTCreate({ user, onCreateNFT }) {
+export default function CreateNFT({ user, onCreateNFT }) {
   const history = useHistory();
   const btnRef = useRef();
   const [buffer, setBuffer] = useState(null);
