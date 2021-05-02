@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/hippy_front/static/css/main.666c41f0.chunk.css",
-    "main.js": "/hippy_front/static/js/main.46090859.chunk.js",
-    "main.js.map": "/hippy_front/static/js/main.46090859.chunk.js.map",
+    "main.js": "/hippy_front/static/js/main.f8c3916e.chunk.js",
+    "main.js.map": "/hippy_front/static/js/main.f8c3916e.chunk.js.map",
     "runtime-main.js": "/hippy_front/static/js/runtime-main.f973ad1d.js",
     "runtime-main.js.map": "/hippy_front/static/js/runtime-main.f973ad1d.js.map",
     "static/css/2.86e65bd8.chunk.css": "/hippy_front/static/css/2.86e65bd8.chunk.css",
@@ -21,6 +21,6 @@
     "static/css/2.86e65bd8.chunk.css",
     "static/js/2.75608815.chunk.js",
     "static/css/main.666c41f0.chunk.css",
-    "static/js/main.46090859.chunk.js"
+    "static/js/main.f8c3916e.chunk.js"
   ]
 }
