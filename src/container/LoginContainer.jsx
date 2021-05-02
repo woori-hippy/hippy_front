@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import Login from "../components/Login";
-import { getProfile, login } from "../modules/user";
+import { login } from "../modules/user";
 
 const LoginContainer = (props) => {
   const history = useHistory();

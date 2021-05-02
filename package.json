@@ -2,7 +2,7 @@
   "name": "hippy_front",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://woori-hippy.github.io/hippy_front/",
+  "homepage": "https://hippy.dnatuna.fun/",
   "dependencies": {
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.3.0",

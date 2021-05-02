@@ -7,7 +7,6 @@ import MainFeaturedPost from "./MainFeaturedPost";
 import FeaturedPost from "./FeaturedPost.jsx";
 import Footer from "./Footer.jsx";
 import { Box, ImageList, ImageListItem, Typography } from "@material-ui/core";
-import ProductThumb from "./ProductThumb";
 import SkeletonThumb from "./SkeletonThumb";
 
 const LazyThumb = lazy(() => import("./ProductThumb"));

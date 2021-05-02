@@ -22,6 +22,21 @@ import SkeletonThumb from "./SkeletonThumb";
 
 const LazyThumb = lazy(() => import("./NFTThumb"));
 
+const nftComponents = (nft) => (
+  <Box>
+    <Card
+      sx={{
+        width: "15rem",
+        boxShadow: "2px 3px 10px 0px rgba(117,117,117,0.5)",
+      }}
+    >
+      <Suspense fallback={<SkeletonThumb />}>
+        <LazyThumb nft={nft} />
+      </Suspense>
+    </Card>
+  </Box>
+);
+
 const activeTypo = (nft, state, title) => {
   return nft === state ? (
     <Typography
@@ -45,7 +60,7 @@ const activeTypo = (nft, state, title) => {
 };
 
 export default function Mypage({ products, nftProfile, user }) {
-  const [nft, setNft] = useState("all");
+  const [show, setShow] = useState("all");
 
   const isMobile = useMediaQuery("(max-width: 568px)");
   return (
@@ -132,20 +147,22 @@ export default function Mypage({ products, nftProfile, user }) {
                     </Button>
                   </Link>
                 </Grid>
-                <Grid item>
-                  <Link to="/createnft">
-                    <Button
-                      size="small"
-                      variant="contained"
-                      disableElevation
-                      sx={{
-                        backgroundColor: "#1B7EA6",
-                      }}
-                    >
-                      NFT 생성하기
-                    </Button>
-                  </Link>
-                </Grid>
+                {user.data.isArtist && (
+                  <Grid item>
+                    <Link to="/createnft">
+                      <Button
+                        size="small"
+                        variant="contained"
+                        disableElevation
+                        sx={{
+                          backgroundColor: "#1B7EA6",
+                        }}
+                      >
+                        NFT 생성하기
+                      </Button>
+                    </Link>
+                  </Grid>
+                )}
               </Grid>
             </Grid>
           </Grid>
@@ -157,7 +174,7 @@ export default function Mypage({ products, nftProfile, user }) {
           >
             <Button
               color="inherit"
-              onClick={() => setNft("all")}
+              onClick={() => setShow("all")}
               sx={{
                 height: "3rem",
                 width: " 10rem",
@@ -165,11 +182,11 @@ export default function Mypage({ products, nftProfile, user }) {
                 ".MuiButton-label": { width: "100%", height: "100%" },
               }}
             >
-              {activeTypo(nft, "all", "모든 NFT")}
+              {activeTypo(show, "all", "모든 NFT")}
             </Button>
             <Button
               color="inherit"
-              onClick={() => setNft("product")}
+              onClick={() => setShow("product")}
               sx={{
                 width: " 10rem",
                 padding: "0",
@@ -177,11 +194,11 @@ export default function Mypage({ products, nftProfile, user }) {
                 ".MuiButton-label": { width: "100%", height: "100%" },
               }}
             >
-              {activeTypo(nft, "product", "판매중인 NFT")}
+              {activeTypo(show, "product", "판매중인 NFT")}
             </Button>
             <Button
               color="inherit"
-              onClick={() => setNft("nonproduct")}
+              onClick={() => setShow("nonproduct")}
               sx={{
                 width: " 10rem",
                 padding: "0",
@@ -189,7 +206,7 @@ export default function Mypage({ products, nftProfile, user }) {
                 ".MuiButton-label": { width: "100%", height: "100%" },
               }}
             >
-              {activeTypo(nft, "nonproduct", "소장중인 NFT")}
+              {activeTypo(show, "nonproduct", "소장중인 NFT")}
             </Button>
           </Grid>
           <Grid
@@ -210,20 +227,16 @@ export default function Mypage({ products, nftProfile, user }) {
                 padding: "initial",
               }}
             >
-              {nftProfile.map((nft) => (
-                <Box>
-                  <Card
-                    sx={{
-                      width: "15rem",
-                      boxShadow: "2px 3px 10px 0px rgba(117,117,117,0.5)",
-                    }}
-                  >
-                    <Suspense fallback={<SkeletonThumb />}>
-                      <LazyThumb nft={nft} />
-                    </Suspense>
-                  </Card>
-                </Box>
-              ))}
+              {nftProfile.map((nft) => {
+                switch (show) {
+                  case "product":
+                    return nft.productId && nftComponents(nft);
+                  case "nonproduct":
+                    return !nft.productId && nftComponents(nft);
+                  default:
+                    return nftComponents(nft);
+                }
+              })}
             </Box>
           </Grid>
         </Grid>

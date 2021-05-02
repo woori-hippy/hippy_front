@@ -4,7 +4,6 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import { Grid, Toolbar } from "@material-ui/core";
-import { Image } from "@material-ui/icons";
 
 const sections = [
   { title: "회사소개", url: "#" },
