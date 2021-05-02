@@ -1,8 +1,17 @@
+/** @jsxImportSource @emotion/react */
+import { jsx, css } from "@emotion/react";
 import Container from "@material-ui/core/Container";
 import Header from "./Header";
 import Footer from "./Footer.jsx";
 import Grid from "@material-ui/core/Grid";
-import { Avatar, Typography, Box, Button, Card } from "@material-ui/core";
+import {
+  Avatar,
+  Typography,
+  Box,
+  Button,
+  Card,
+  useMediaQuery,
+} from "@material-ui/core";
 import ProductThumb from "./ProductThumb";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import { Link } from "react-router-dom";
@@ -38,20 +47,31 @@ const activeTypo = (nft, state, title) => {
 export default function Mypage({ products, nftProfile, user }) {
   const [nft, setNft] = useState("all");
 
+  const isMobile = useMediaQuery("(max-width: 568px)");
   return (
     <React.Fragment>
       <Header user={user} />
-      <Container maxWidth="lg">
-        <Grid container spacing={2}>
+      <Container
+        maxWidth="lg"
+        css={
+          isMobile &&
+          css`
+            padding: 0;
+          `
+        }
+      >
+        <Grid container>
           <Grid
             container
             xs={12}
             item
-            spacing={8}
+            spacing={isMobile ? 4 : 8}
             sx={{
+              width: "100%",
               margin: "1rem 0 0 0",
               paddingBottom: "4rem",
               backgroundColor: "#EBF1F2",
+              justifyContent: "center",
             }}
           >
             <Grid
@@ -64,11 +84,19 @@ export default function Mypage({ products, nftProfile, user }) {
               <Avatar
                 alt="profile image"
                 src="https://i.postimg.cc/0Q9zzjvH/AppleJam.png"
-                sx={{
-                  width: "12rem",
-                  height: "12rem",
-                  border: "0.5px solid #16669A",
-                }}
+                sx={
+                  isMobile
+                    ? {
+                        width: "9rem",
+                        height: "9rem",
+                        border: "0.5px solid #16669A",
+                      }
+                    : {
+                        width: "12rem",
+                        height: "12rem",
+                        border: "0.5px solid #16669A",
+                      }
+                }
               ></Avatar>
             </Grid>
             <Grid
@@ -81,12 +109,12 @@ export default function Mypage({ products, nftProfile, user }) {
               spacing={2}
             >
               <Grid item>
-                <Typography variant="h3">황인서</Typography>
+                <Typography variant="h3">{user.data.name}</Typography>
               </Grid>
               <Grid item container alignItems="center">
                 <MailOutlineIcon fontSize="large" />
                 <Typography sx={{ fontSize: "1.2rem", marginLeft: "0.5rem" }}>
-                  sjsjsj1246@gmail.com
+                  {user.data.email}
                 </Typography>
               </Grid>
               <Grid item container spacing={2}>
@@ -97,7 +125,7 @@ export default function Mypage({ products, nftProfile, user }) {
                       variant="contained"
                       disableElevation
                       sx={{
-                        backgroundColor: "#16669A",
+                        backgroundColor: "#1B7EA6",
                       }}
                     >
                       은행 계좌 등록
@@ -111,7 +139,7 @@ export default function Mypage({ products, nftProfile, user }) {
                       variant="contained"
                       disableElevation
                       sx={{
-                        backgroundColor: "#16669A",
+                        backgroundColor: "#1B7EA6",
                       }}
                     >
                       NFT 생성하기

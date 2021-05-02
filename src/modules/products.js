@@ -11,6 +11,9 @@ import { takeEvery } from "redux-saga/effects";
 const CREATE_PRODUCT = "products/CREATE_PRODUCT";
 const CREATE_PRODUCT_SUCCESS = "products/CREATE_PRODUCT_SUCCESS";
 const CREATE_PRODUCT_ERROR = "products/CREATE_PRODUCT_ERROR";
+const BUY_PRODUCT = "products/BUY_PRODUCT";
+const BUY_PRODUCT_SUCCESS = "products/BUY_PRODUCT_SUCCESS";
+const BUY_PRODUCT_ERROR = "products/BUY_PRODUCT_ERROR";
 
 const GET_PRODUCTS = "products/GET_PRODUCTS";
 const GET_PRODUCTS_SUCCESS = "products/GET_PRODUCTS_SUCCESS";
@@ -26,6 +29,10 @@ export const createProduct = (product) => ({
   type: CREATE_PRODUCT,
   payload: product,
 });
+export const buyProduct = (id) => ({
+  type: BUY_PRODUCT,
+  payload: id,
+});
 export const getProducts = () => ({ type: GET_PRODUCTS });
 export const getProduct = (id) => ({
   type: GET_PRODUCT,
@@ -38,6 +45,7 @@ const createProductSaga = createPromiseSaga(
   CREATE_PRODUCT,
   productsAPI.createProduct
 );
+const buyProductSaga = createPromiseSaga(BUY_PRODUCT, productsAPI.buyProducts);
 const getProductsSaga = createPromiseSaga(
   GET_PRODUCTS,
   productsAPI.getProducts
@@ -49,6 +57,7 @@ const getProductSaga = createPromiseSagaById(
 
 export function* productsSaga() {
   yield takeEvery(CREATE_PRODUCT, createProductSaga);
+  yield takeEvery(BUY_PRODUCT, buyProductSaga);
   yield takeEvery(GET_PRODUCTS, getProductsSaga);
   yield takeEvery(GET_PRODUCT, getProductSaga);
 }
@@ -65,6 +74,10 @@ export default function products(state = initialState, action) {
     case CREATE_PRODUCT_SUCCESS:
     case CREATE_PRODUCT_ERROR:
       return handleAsyncActions(CREATE_PRODUCT, "message")(state, action);
+    case BUY_PRODUCT:
+    case BUY_PRODUCT_SUCCESS:
+    case BUY_PRODUCT_ERROR:
+      return handleAsyncActions(BUY_PRODUCT, "message")(state, action);
     case GET_PRODUCTS:
     case GET_PRODUCTS_SUCCESS:
     case GET_PRODUCTS_ERROR:

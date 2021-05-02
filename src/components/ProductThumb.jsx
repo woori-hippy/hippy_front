@@ -11,6 +11,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const ProductThumb = ({ product }) => {
+  const price =
+    product.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +
+    "원";
   return (
     <Link to={`/product/${product.id}`}>
       <Card
@@ -75,14 +78,14 @@ const ProductThumb = ({ product }) => {
                 </Grid>
               </Grid>
               <Grid container item>
-                <Grid item xs={8}>
+                <Grid item xs={6}>
                   <Typography variant="body2" color="text.secondary">
                     {product.userId}
                   </Typography>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={6}>
                   <Typography component="p" align="right">
-                    {`${product.price}￦`}
+                    {price}
                   </Typography>
                 </Grid>
               </Grid>

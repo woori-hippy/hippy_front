@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import PersonIcon from "@material-ui/icons/Person";
-import { Avatar, Container, TextField } from "@material-ui/core";
+import { Avatar, Container, TextField, useMediaQuery } from "@material-ui/core";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signout } from "../modules/user";
@@ -25,6 +25,8 @@ function Header({ user }) {
   const handlehistory = (e) => {
     user.data ? history.push("/mypage") : history.push("/login");
   };
+  const isMobile = useMediaQuery("(max-width: 568px)");
+
   return (
     <div
       css={{
@@ -35,24 +37,35 @@ function Header({ user }) {
     >
       <Container maxWidth="lg">
         <Toolbar sx={{ alignItems: "center" }}>
-          <Link to="/">
-            <Avatar src="https://i.postimg.cc/QdNLR1CX/logo-fullsize.png" />
-          </Link>
           <Link
             to="/"
-            css={{
-              display: "flex",
-              flex: 1,
-              alignItems: "center",
-              marginTop: "0.5rem",
-            }}
+            css={
+              isMobile &&
+              css`
+                flex: 1;
+              `
+            }
           >
-            <img
-              src="https://i.postimg.cc/zfDxr1p3/2021-05-01-10-05-53.png"
-              alt="logo"
-              style={{ width: "6rem" }}
-            />
+            <Avatar src="https://i.postimg.cc/QdNLR1CX/logo-fullsize.png" />
           </Link>
+          {!isMobile && (
+            <Link
+              to="/"
+              css={{
+                display: "flex",
+                flex: 1,
+                alignItems: "center",
+                marginTop: "0.5rem",
+              }}
+            >
+              <img
+                src="https://i.postimg.cc/zfDxr1p3/2021-05-01-10-05-53.png"
+                alt="logo"
+                style={{ width: "6rem" }}
+              />
+            </Link>
+          )}
+
           <TextField label="아이템 검색하기" size="small" sx={{ flex: 3 }} />
           <IconButton>
             <SearchIcon />
@@ -68,6 +81,7 @@ function Header({ user }) {
               sx={{ textDecoration: "none" }}
               onClick={() => {
                 dispatch(signout());
+                history.push("/");
               }}
             >
               LOG OUT

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import Mypage from "../components/Mypage";
 import { getProducts } from "../modules/products";
-import { getNFTProfile } from "../modules/user";
+import { getNFTProfile, getProfile } from "../modules/user";
 
 const MypageContainer = (props) => {
   const history = useHistory();

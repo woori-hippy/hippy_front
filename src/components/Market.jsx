@@ -24,7 +24,7 @@ import SkeletonThumb from "./SkeletonThumb";
 
 const activeTypo = (sort, state, title) => {
   return sort === state ? (
-    <Typography sx={{ color: "#E1315A" }}>{title}</Typography>
+    <Typography sx={{ color: "#3887A6" }}>{title}</Typography>
   ) : (
     <Typography sx={{ color: "inherit" }}>{title}</Typography>
   );
@@ -86,7 +86,7 @@ const Market = ({ products, loading, user }) => {
                 >
                   <FormControlLabel
                     value="All"
-                    control={<Radio />}
+                    control={<Radio sx={{ color: "#3887A6 !important" }} />}
                     label="All"
                     sx={{ width: "100%", margin: "0", padding: "0.5rem" }}
                   />
@@ -100,7 +100,7 @@ const Market = ({ products, loading, user }) => {
                 >
                   <FormControlLabel
                     value="Digital Art"
-                    control={<Radio />}
+                    control={<Radio sx={{ color: "#3887A6 !important" }} />}
                     label="Digital Art"
                     sx={{ width: "100%", margin: "0", padding: "0.5rem" }}
                   />
@@ -114,7 +114,7 @@ const Market = ({ products, loading, user }) => {
                 >
                   <FormControlLabel
                     value="Animation"
-                    control={<Radio />}
+                    control={<Radio sx={{ color: "#3887A6 !important" }} />}
                     label="Animation"
                     sx={{ width: "100%", margin: "0", padding: "0.5rem" }}
                   />
@@ -128,7 +128,7 @@ const Market = ({ products, loading, user }) => {
                 >
                   <FormControlLabel
                     value="Virtual Reality"
-                    control={<Radio />}
+                    control={<Radio sx={{ color: "#3887A6 !important" }} />}
                     label="Virtual Reality"
                     sx={{ width: "100%", margin: "0", padding: "0.5rem" }}
                   />
@@ -172,11 +172,11 @@ const Market = ({ products, loading, user }) => {
             {loading
               ? [1, 2, 3, 4, 5, 6, 7, 8].map(() => <SkeletonThumb />)
               : products.map((product) =>
-                  product.tag === tag ? (
+                  product.tag === tag && !product.isSold ? (
                     <Box>
                       <ProductThumb product={product} />
                     </Box>
-                  ) : tag === "All" ? (
+                  ) : tag === "All" && !product.isSold ? (
                     <ProductThumb product={product} />
                   ) : null
                 )}

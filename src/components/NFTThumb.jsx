@@ -41,9 +41,21 @@ const NFTThumb = ({ nft }) => {
         image={`https://ipfs.io/ipfs/${nft.ipfsHash}`}
         title={null}
       />
-      <Button onClick={handleSale} sx={{ width: "100%", height: "100%" }}>
-        {nft.productId ? "판매중" : "판매하기"}
-      </Button>
+      {nft.productId ? (
+        <Button
+          onClick={handleSale}
+          sx={{ width: "100%", height: "100%", color: "#1B7EA6" }}
+        >
+          판매중
+        </Button>
+      ) : (
+        <Button
+          onClick={handleSale}
+          sx={{ width: "100%", height: "100%", color: "black" }}
+        >
+          판매하기
+        </Button>
+      )}
     </Card>
   );
 };

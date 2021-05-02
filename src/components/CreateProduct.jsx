@@ -16,6 +16,7 @@ import {
   FormControlLabel,
   Select,
   MenuItem,
+  useMediaQuery,
 } from "@material-ui/core";
 import ImageUploader from "react-images-upload";
 import { getHash } from "../api/ipfs";
@@ -36,6 +37,7 @@ export default function CreateProduct({ user, onCreateProduct }) {
     setIsAction((isAction) => !isAction);
     console.log(isAction);
   };
+  const isMobile = useMediaQuery("(max-width: 568px)");
 
   const handleCreateProduct = (e) => {
     e.preventDefault();
@@ -53,10 +55,17 @@ export default function CreateProduct({ user, onCreateProduct }) {
   return (
     <Fragment>
       <Header user={user} />
-      <Container maxWidth="sm">
+      <Container
+        maxWidth="sm"
+        css={
+          isMobile &&
+          css`
+            padding: 2rem;
+          `
+        }
+      >
         <Grid
           container
-          spacing={2}
           justifyContent="center"
           alignItems="center"
           direction="column"

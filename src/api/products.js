@@ -16,6 +16,17 @@ export const createProduct = async (product) => {
   return response.data;
 };
 
+export const buyProducts = async (id) => {
+  const response = await axios({
+    method: "post",
+    url: "/product/buy",
+    data: {
+      productId: id,
+    },
+  });
+  return response.data;
+};
+
 export const getProducts = async () => {
   const response = await axios.get("/product");
   return response.data;
