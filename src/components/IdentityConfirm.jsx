@@ -6,21 +6,45 @@ import {
 } from "@material-ui/core";
 import Typography from '@material-ui/core/Typography';
 import NewWindow from 'react-new-window'
+import NumberFormat from 'react-number-format';
+
+
 
 export default function IdentityConfirm({onClose, handleGetToken}) {
   // refs
   const firstNINRef = useRef() // National Identity Number (주민등록번호)
   const lastNINRef = useRef()
   const phoneNumberRef = useRef()
-
+  
   // handle methods
   const handleCertification = (e) => {
     e.preventDefault();
     const firstNIN = firstNINRef.current.value
     const lastNIN = lastNINRef.current.value
     const phoneNumber = phoneNumberRef.current.value
+    console.log("앞자리", firstNIN, "타입", typeof firstNIN) 
     handleGetToken("3", phoneNumber, "Y", "김건훈", firstNIN, lastNIN) // api call
     onClose()
+  }
+
+  // third-parties
+  const NumberFormatCustom = (maxLength) => { 
+    let formatString = "";
+    for (let i=0; i < maxLength; i++) formatString += "#";
+    const format = React.forwardRef(function NumberFormatCustom(props, ref) {
+      const { ...other } = props;
+      return (
+        <NumberFormat
+          {...other}
+          getInputRef={ref}
+          decimalScale={10000000}
+          isNumericString
+          allowNegative={false}
+          format={formatString}
+        />
+      );
+    });
+    return format
   }
   
   return (
@@ -49,19 +73,20 @@ export default function IdentityConfirm({onClose, handleGetToken}) {
         </Grid>
         <Grid item xs={6}>
           <TextField
-            name="firstNIN" 
             required
+            autoFocus={true}
             variant="outlined"
-            sx={{margintTop: "1rem", marginLeft: "3rem", width: "14rem"}}
+            InputProps={{inputComponent: NumberFormatCustom(6)}}
+            sx={{margintTop: "1rem", marginLeft: "3rem", width: "14rem", WebkitAppearance: "none"}}
             helperText="주민등록번호 앞자리를 입력해주세요"
-            inputRef={firstNINRef}
-          />        
+            inputRef={firstNINRef}>
+            </TextField>
         </Grid>
         <Grid item xs={6}>
           <TextField
-            name="firstNIN" 
             required
             variant="outlined"
+            InputProps={{inputComponent: NumberFormatCustom(7)}}
             sx={{width: "14rem"}}
             helperText="주민등록번호 뒷자리를 입력해주세요"
             inputRef={lastNINRef}
@@ -77,6 +102,7 @@ export default function IdentityConfirm({onClose, handleGetToken}) {
             name="phoneNum"
             required
             variant="outlined"
+            InputProps={{inputComponent: NumberFormatCustom(11)}}
             sx={{width: "14rem", marginLeft: "3rem"}}
             helperText="휴대폰 번호를 입력해주세요"
             inputRef={phoneNumberRef}

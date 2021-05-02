@@ -232,8 +232,7 @@ export default function BankAccountRegister(user) {
                     variant="outlined"
                     sx={{margin: "0.5rem", width: "16rem"}}
                     helperText="인증 번호를 입력해주세요"
-                    onChange={handleTextInput}
-                  >
+                    onChange={handleTextInput}>
                     
                   </TextField>
                   <Button
@@ -243,7 +242,14 @@ export default function BankAccountRegister(user) {
                     sx={{margin: "0.5rem", width: "8rem", height: "3.4rem", fontSize: "1rem", backgroundColor: "#3887A6"}}
                   >
                     확인
-                  </Button>                
+                  </Button> 
+                  <Grid container item xs={12} justifyContent="center" sx={{ flexDirection: "row", margin: "0rem auto" }}>
+                    <Snackbar open={snackBar} autoHideDuration={2000} anchorOrigin={{vertical: 'top', horizontal: 'center'}} onClose={handleSnackBarClose}>
+                      <Alert severity="success" variant="filled" onClose={handleSnackBarClose}>
+                        인증 번호가 전송되었습니다!
+                      </Alert>
+                    </Snackbar>
+                  </Grid>               
                   <Grid container item xs={12} justifyContent="center" sx={{ flexDirection: "row", margin: "0rem auto" }}>
                     <Button
                       id="account"
