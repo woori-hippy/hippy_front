@@ -7,32 +7,36 @@ import {
 } from "../lib/asyncUtils";
 import { takeEvery } from "redux-saga/effects";
 
-const LOGIN_REQUEST = "user/LOGIN_REQUEST";
-const LOGIN_REQUEST_SUCCESS = "user/LOGIN_REQUEST_SUCCESS";
-const LOGIN_REQUEST_ERROR = "user/LOGIN_REQUEST_ERROR";
-const SIGNOUT_REQUEST = "user/SIGNOUT_REQUEST";
-const SIGNOUT_REQUEST_SUCCESS = "user/SIGNOUT_REQUEST_SUCCESS";
-const SIGNOUT_REQUEST_ERROR = "user/SIGNOUT_REQUEST_ERROR";
-const SIGNUP_REQUEST = "user/SIGNUP_REQUEST";
-const SIGNUP_REQUEST_SUCCESS = "user/SIGNUP_REQUEST_SUCCESS";
-const SIGNUP_REQUEST_ERROR = "user/SIGNUP_REQUEST_ERROR";
-const PROFILE_REQUEST = "user/PROFILE_REQUEST";
-const PROFILE_REQUEST_SUCCESS = "user/PROFILE_REQUEST_SUCCESS";
-const PROFILE_REQUEST_ERROR = "user/PROFILE_REQUEST_ERROR";
+const LOGIN = "user/LOGIN";
+const LOGIN_SUCCESS = "user/LOGIN_SUCCESS";
+const LOGIN_ERROR = "user/LOGIN_ERROR";
+const SIGNOUT = "user/SIGNOUT";
+const SIGNOUT_SUCCESS = "user/SIGNOUT_SUCCESS";
+const SIGNOUT_ERROR = "user/SIGNOUT_ERROR";
+const SIGNUP = "user/SIGNUP";
+const SIGNUP_SUCCESS = "user/SIGNUP_SUCCESS";
+const SIGNUP_ERROR = "user/SIGNUP_ERROR";
 
-export const loginRequest = (email, password) => ({
-  type: LOGIN_REQUEST,
+const GET_PROFILE = "user/GET_PROFILE";
+const GET_PROFILE_SUCCESS = "user/GET_PROFILE_SUCCESS";
+const GET_PROFILE_ERROR = "user/GET_PROFILE_ERROR";
+const GET_NFT_PROFILE = "user/GET_NFT_PROFILE";
+const GET_NFT_PROFILE_SUCCESS = "user/GET_NFT_PROFILE_SUCCESS";
+const GET_NFT_PROFILE_ERROR = "user/GET_NFT_PROFILE_ERROR";
+
+export const login = (email, password) => ({
+  type: LOGIN,
   payload: {
     email: email,
     password: password,
   },
   meta: email,
 });
-export const signoutRequest = () => ({
-  type: SIGNOUT_REQUEST,
+export const signout = () => ({
+  type: SIGNOUT,
 });
-export const signupRequest = ({ name, email, password }) => ({
-  type: SIGNUP_REQUEST,
+export const signup = ({ name, email, password }) => ({
+  type: SIGNUP,
   payload: {
     name: name,
     email: email,
@@ -40,56 +44,57 @@ export const signupRequest = ({ name, email, password }) => ({
   },
   meta: email,
 });
-export const profileRequest = () => ({
-  type: PROFILE_REQUEST,
+export const getProfile = () => ({
+  type: GET_PROFILE,
+});
+export const getNFTProfile = () => ({
+  type: GET_NFT_PROFILE,
 });
 
-const loginRequestSaga = createPromiseSaga(
-  LOGIN_REQUEST,
-  loginAPI.loginRequest
-);
-const signoutRequestSaga = createPromiseSaga(
-  SIGNOUT_REQUEST,
-  loginAPI.signoutRequest
-);
-const signupRequestSaga = createPromiseSaga(
-  SIGNUP_REQUEST,
-  loginAPI.signupRequest
-);
-const profileRequestSaga = createPromiseSaga(
-  PROFILE_REQUEST,
-  profileAPI.profileRequest
+const loginSaga = createPromiseSaga(LOGIN, loginAPI.login);
+const signoutSaga = createPromiseSaga(SIGNOUT, loginAPI.signout);
+const signupSaga = createPromiseSaga(SIGNUP, loginAPI.signup);
+const getProfileSaga = createPromiseSaga(GET_PROFILE, profileAPI.getProfile);
+const getNFTProfileSaga = createPromiseSaga(
+  GET_NFT_PROFILE,
+  profileAPI.getNFTProfile
 );
 
 export function* userSaga() {
-  yield takeEvery(LOGIN_REQUEST, loginRequestSaga);
-  yield takeEvery(SIGNOUT_REQUEST, signoutRequestSaga);
-  yield takeEvery(SIGNUP_REQUEST, signupRequestSaga);
-  yield takeEvery(PROFILE_REQUEST, profileRequestSaga);
+  yield takeEvery(LOGIN, loginSaga);
+  yield takeEvery(SIGNOUT, signoutSaga);
+  yield takeEvery(SIGNUP, signupSaga);
+  yield takeEvery(GET_PROFILE, getProfileSaga);
+  yield takeEvery(GET_NFT_PROFILE, getNFTProfileSaga);
 }
 
 const initialState = {
   user: reducerUtils.initial(),
+  nftProfile: reducerUtils.initial(),
 };
 
 export default function user(state = initialState, action) {
   switch (action.type) {
-    case LOGIN_REQUEST:
-    case LOGIN_REQUEST_SUCCESS:
-    case LOGIN_REQUEST_ERROR:
-      return handleAsyncActions(LOGIN_REQUEST, "user", true)(state, action);
-    case SIGNOUT_REQUEST:
-    case SIGNOUT_REQUEST_SUCCESS:
-    case SIGNOUT_REQUEST_ERROR:
-      return handleAsyncActions(SIGNOUT_REQUEST, "user", true)(state, action);
-    case SIGNUP_REQUEST:
-    case SIGNUP_REQUEST_SUCCESS:
-    case SIGNUP_REQUEST_ERROR:
-      return handleAsyncActions(SIGNUP_REQUEST, "user", true)(state, action);
-    case PROFILE_REQUEST:
-    case PROFILE_REQUEST_SUCCESS:
-    case PROFILE_REQUEST_ERROR:
-      return handleAsyncActions(PROFILE_REQUEST, "user", true)(state, action);
+    case LOGIN:
+    case LOGIN_SUCCESS:
+    case LOGIN_ERROR:
+      return handleAsyncActions(LOGIN, "user")(state, action);
+    case SIGNOUT:
+    case SIGNOUT_SUCCESS:
+    case SIGNOUT_ERROR:
+      return handleAsyncActions(SIGNOUT, "user")(state, action);
+    case SIGNUP:
+    case SIGNUP_SUCCESS:
+    case SIGNUP_ERROR:
+      return handleAsyncActions(SIGNUP, "user")(state, action);
+    case GET_PROFILE:
+    case GET_PROFILE_SUCCESS:
+    case GET_PROFILE_ERROR:
+      return handleAsyncActions(GET_PROFILE, "user")(state, action);
+    case GET_NFT_PROFILE:
+    case GET_NFT_PROFILE_SUCCESS:
+    case GET_NFT_PROFILE_ERROR:
+      return handleAsyncActions(GET_NFT_PROFILE, "nftProfile")(state, action);
     default:
       return state;
   }

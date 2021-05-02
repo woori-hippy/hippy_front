@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import Signup from "../components/Signup";
-import { signupRequest } from "../modules/user";
+import { signup } from "../modules/user";
 
 const SignupContainer = (props) => {
   const history = useHistory();
@@ -10,7 +10,7 @@ const SignupContainer = (props) => {
   const dispatch = useDispatch();
 
   const handleSignup = ({ name, email, password }) => {
-    dispatch(signupRequest({ name, email, password }));
+    dispatch(signup({ name, email, password }));
   };
 
   useEffect(() => {
