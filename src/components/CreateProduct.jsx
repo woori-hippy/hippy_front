@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, { Fragment, useRef, useState } from "react";
 import Container from "@material-ui/core/Container";
 import Header from "./Header";
 import Footer from "./Footer.jsx";
@@ -9,8 +9,6 @@ import {
   Typography,
   Box,
   Button,
-  Card,
-  CardMedia,
   TextField,
   Checkbox,
   FormControlLabel,
@@ -18,8 +16,6 @@ import {
   MenuItem,
   useMediaQuery,
 } from "@material-ui/core";
-import ImageUploader from "react-images-upload";
-import { getHash } from "../api/ipfs";
 import { useHistory, useLocation } from "react-router";
 
 export default function CreateProduct({ user, onCreateProduct }) {

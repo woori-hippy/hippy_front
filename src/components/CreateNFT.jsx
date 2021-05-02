@@ -25,6 +25,7 @@ export default function CreateNFT({ user, onCreateNFT }) {
     if (btnRef.current) {
       btnRef.current.setAttribute("disabled", "visible");
     }
+    console.log(file);
   };
 
   const captureFile = () => {
@@ -131,6 +132,7 @@ export default function CreateNFT({ user, onCreateNFT }) {
             />
             <Button
               ref={btnRef}
+              disabled={file.length === 0 ? true : false}
               style={{
                 width: "20rem",
                 height: "3rem",

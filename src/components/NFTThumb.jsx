@@ -1,17 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import {
-  Button,
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Grid,
-  Typography,
-} from "@material-ui/core";
+import { Button, Card, CardMedia, Grid } from "@material-ui/core";
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const NFTThumb = ({ nft }) => {
   const history = useHistory();

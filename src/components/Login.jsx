@@ -1,7 +1,6 @@
 import * as React from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -92,6 +91,7 @@ export default function Login({ onLogin }) {
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
+
           <Button
             type="submit"
             fullWidth
@@ -100,6 +100,12 @@ export default function Login({ onLogin }) {
             onClick={handleLogin}
           >
             Sign In
+          </Button>
+          <Button>
+            <img
+              src="https://i.postimg.cc/wBXNhq69/kakao-login-medium-narrow.png"
+              alt="kakao"
+            />
           </Button>
           <Grid container>
             <Grid item xs>
