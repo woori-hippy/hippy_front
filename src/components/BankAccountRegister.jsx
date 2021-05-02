@@ -14,6 +14,8 @@ import {
 } from "@material-ui/core";
 import SendIcon from '@material-ui/icons/Send';
 import AccountConfirm from "./AccountConfirm";
+import IdentityConfirm from "./IdentityConfirm";
+import { TryRounded } from "@material-ui/icons";
 
 const bankList = [
   {
@@ -41,7 +43,10 @@ const bankList = [
 export default function BankAccountRegister(user) {
   // state
   const [selectedBank, setSelectedBank] = React.useState('');
-  const [newWindow, setNewWindow] = React.useState(false);
+  const [newWindow, setNewWindow] = React.useState({
+    identity: false,
+    account: false
+  });
   const [snackBar, setSnackBar] = React.useState(false);
   const [userInfos, setUserInfos] = React.useState({
     bankName: "",
@@ -51,6 +56,7 @@ export default function BankAccountRegister(user) {
     phoneNum: '',
     certificationNum: ''
   })
+  
 
   // handle methods
   const handleBankSelect = (event) => {
@@ -78,13 +84,18 @@ export default function BankAccountRegister(user) {
     }
     setSnackBar(false);
   };
-  const showWindow = () => {
-    setNewWindow(true)
+  const showWindow = (event) => {
+    const id = event.currentTarget.id
+    setNewWindow({
+      ...newWindow,
+      [id]: true
+    })
   }
 
   return (
       <React.Fragment>
-        {newWindow ? <AccountConfirm onClose={() => {setNewWindow(false)}} /> : null }
+        {newWindow.identity ? <IdentityConfirm onClose={() => {setNewWindow(false)}} /> : null }
+        {newWindow.account ? <AccountConfirm onClose={() => {setNewWindow(false)}} /> : null }
         <Header user={user} />
         <Container maxWidth="md">
             <Box>
@@ -114,6 +125,17 @@ export default function BankAccountRegister(user) {
                       color="#585858">
                       디지털 자산을 구매 및 판매할 때<br></br> 사용할 현금 거래 은행 계좌를 등록해주세요!
                     </Typography>
+                </Grid>
+                <Grid container item xs={12} justifyContent="center" sx={{ flexDirection: "row", margin: "0rem auto" }}>
+                  <Button
+                    id="identity"
+                    variant="contained"
+                    color="primary"
+                    sx={{margin: "3rem", width: "25rem", height: "3.4rem", fontSize: "1rem", backgroundColor: "#3887A6"}}
+                    onClick={showWindow}
+                  >
+                    본인 인증하기
+                  </Button>
                 </Grid>
                 <Grid container item xs={12} justifyContent="center" sx={{ flexDirection: "column" }}>
                   <TextField
@@ -185,7 +207,7 @@ export default function BankAccountRegister(user) {
                   </Button>
                 </Grid>
                 <Grid container item xs={12} justifyContent="center" sx={{ flexDirection: "row", margin: "0rem auto" }}>
-                  <Snackbar open={snackBar} autoHideDuration={2000} onClose={handleSnackBarClose}>
+                  <Snackbar open={snackBar} autoHideDuration={2000} anchorOrigin={{vertical: 'top', horizontal: 'center'}} onClose={handleSnackBarClose}>
                     <Alert severity="success" variant="filled" onClose={handleSnackBarClose}>
                       인증 번호가 전송되었습니다!
                     </Alert>
@@ -200,16 +222,19 @@ export default function BankAccountRegister(user) {
                     sx={{margin: "0.5rem", width: "16rem"}}
                     helperText="인증 번호를 입력해주세요"
                     onChange={handleTextInput}
-                  />
+                  >
+                    
+                  </TextField>
                   <Button
                     variant="contained"
                     color="primary"
                     sx={{margin: "0.5rem", width: "8rem", height: "3.4rem", fontSize: "1rem", backgroundColor: "#3887A6"}}
                   >
                     확인
-                  </Button>
+                  </Button>                
                   <Grid container item xs={12} justifyContent="center" sx={{ flexDirection: "row", margin: "0rem auto" }}>
                     <Button
+                      id="account"
                       variant="contained"
                       color="primary"
                       sx={{margin: "0.5rem", width: "25rem", height: "3.4rem", fontSize: "1rem", backgroundColor: "#1B7EA6"}}
