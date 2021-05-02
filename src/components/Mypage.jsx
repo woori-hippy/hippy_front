@@ -2,13 +2,14 @@ import Container from "@material-ui/core/Container";
 import Header from "./Header";
 import Footer from "./Footer.jsx";
 import Grid from "@material-ui/core/Grid";
-import { Avatar, Typography, Box, Button } from "@material-ui/core";
+import { Avatar, Typography, Box, Button, Card } from "@material-ui/core";
 import ProductThumb from "./ProductThumb";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import CheckIcon from "@material-ui/icons/Check";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+import NFTThumb from "./NFTThumb";
 
 const activeTypo = (nft, state, title) => {
   return nft === state ? (
@@ -32,7 +33,7 @@ const activeTypo = (nft, state, title) => {
   );
 };
 
-export default function Mypage({ products, user }) {
+export default function Mypage({ products, nftProfile, user }) {
   const [nft, setNft] = useState("all");
 
   return (
@@ -179,9 +180,16 @@ export default function Mypage({ products, user }) {
                 padding: "initial",
               }}
             >
-              {products.map((product) => (
+              {nftProfile.map((nft) => (
                 <Box>
-                  <ProductThumb product={product} />
+                  <Card
+                    sx={{
+                      width: "15rem",
+                      boxShadow: "2px 3px 10px 0px rgba(117,117,117,0.5)",
+                    }}
+                  >
+                    <NFTThumb nft={nft} />
+                  </Card>
                 </Box>
               ))}
             </Box>

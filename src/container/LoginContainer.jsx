@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import Login from "../components/Login";
-import { loginRequest } from "../modules/user";
+import { login } from "../modules/user";
 
 const LoginContainer = (props) => {
   const history = useHistory();
@@ -10,14 +10,14 @@ const LoginContainer = (props) => {
   const dispatch = useDispatch();
 
   const handleLogin = (email, password) => {
-    dispatch(loginRequest(email, password));
+    dispatch(login(email, password));
   };
 
   useEffect(() => {
     if (user.data) history.push("/mypage");
   }, [history, user]);
 
-  return <Login onLoginRequest={handleLogin} />;
+  return <Login onLogin={handleLogin} />;
 };
 
 export default LoginContainer;

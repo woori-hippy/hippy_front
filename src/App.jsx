@@ -9,14 +9,14 @@ import ProductPage from "./pages/ProductPage";
 import SignupPage from "./pages/SignupPage";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { profileRequest } from "./modules/user";
+import { getProfile } from "./modules/user";
 import BankAccountRegisterPage from "./pages/BankAccountRegisterPage";
 
 function App() {
   const dispath = useDispatch();
 
   useEffect(() => {
-    dispath(profileRequest());
+    dispath(getProfile());
   }, [dispath]);
 
   return (

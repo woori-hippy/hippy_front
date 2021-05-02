@@ -1,7 +1,6 @@
 import axios from "axios";
 
-// 프로필 조회
-export const profileRequest = async () => {
+export const getProfile = async () => {
   const response = await axios({
     method: "get",
     url: "/profile",
@@ -9,7 +8,6 @@ export const profileRequest = async () => {
   return response.data.user;
 };
 
-// 우리 은행 계좌 수정
 export const accountChangeReqeust = async (wooriAccount, wooriToken) => {
   const response = await axios({
     method: "patch",
@@ -18,6 +16,25 @@ export const accountChangeReqeust = async (wooriAccount, wooriToken) => {
       wooriAccount: wooriAccount,
       wooriToken: wooriToken
     }
+  });
+  return response.data;
+};
+
+export const getNFTProfile = async () => {
+  const response = await axios({
+    method: "get",
+    url: "/profile/nft",
+  });
+  return response.data;
+};
+
+export const updateCoinAccount = async (account) => {
+  const response = await axios({
+    method: "patch",
+    url: "/profile/coin",
+    data: {
+      coinAccount: account.coinAccount,
+    },
   });
   return response.data;
 };
