@@ -28,28 +28,35 @@ export const allAcountRequest = async (token) => {
 };
 
 //인증 - 토큰받기
-export const wooriTokenRequest = async (COMC_DIS, HP_NO, HP_CRTF_AGR_YN, FNM, RRNO_BFNB, ENCY_RRNO_LSNM) => {
+export const wooriTokenRequest = async (
+  COMC_DIS,
+  HP_NO,
+  HP_CRTF_AGR_YN,
+  FNM,
+  RRNO_BFNB,
+  ENCY_RRNO_LSNM
+) => {
   const response = await axios({
     method: "post",
-    url: "/woori/wooriToken",
+    url: "/api/woori/wooriToken",
     data: {
-      COMC_DIS: COMC_DIS, 
+      COMC_DIS: COMC_DIS,
       HP_NO: HP_NO,
-      HP_CRTF_AGR_YN: HP_CRTF_AGR_YN, 
+      HP_CRTF_AGR_YN: HP_CRTF_AGR_YN,
       FNM: FNM,
       RRNO_BFNB: RRNO_BFNB,
-      ENCY_RRNO_LSNM: ENCY_RRNO_LSNM
-    }  
+      ENCY_RRNO_LSNM: ENCY_RRNO_LSNM,
+    },
   });
-  
+
   return response.data;
 };
 
-//휴대폰 인증 완료 
+//휴대폰 인증 완료
 export const phoneRequest = async (phone) => {
   const response = await axios({
     method: "post",
-    url: "/woori/phone",
+    url: "/api/woori/phone",
     data: {
       RRNO_BFNB: phone.RRNO_BFNB,
       ENCY_RRNO_LSNM: phone.ENCY_RRNO_LSNM,

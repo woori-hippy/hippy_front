@@ -3,7 +3,7 @@ import axios from "axios";
 export const createNFT = async (ipfsHash) => {
   const response = await axios({
     method: "post",
-    url: "/nft",
+    url: "/api/nft",
     data: {
       ipfsHash: ipfsHash,
     },
@@ -14,7 +14,7 @@ export const createNFT = async (ipfsHash) => {
 export const estimateGas = async (ipfsHash) => {
   const response = await axios({
     method: "post",
-    url: "/nft/estimate",
+    url: "/api/nft/estimate",
     data: {
       ipfsHash: ipfsHash,
     },
