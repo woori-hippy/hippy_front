@@ -1,4 +1,11 @@
-import { Box, Button, Container, Grid, Typography } from "@material-ui/core";
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  Typography,
+  useMediaQuery,
+} from "@material-ui/core";
 import ShareIcon from "@material-ui/icons/Share";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import React from "react";
@@ -6,6 +13,11 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 const Product = ({ product, user, handleBuyProduct }) => {
+  const price =
+    product.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") +
+    "원";
+
+  const isMobile = useMediaQuery("(max-width: 568px)");
   return (
     <React.Fragment>
       <Header user={user} />
@@ -41,9 +53,14 @@ const Product = ({ product, user, handleBuyProduct }) => {
             direction="column"
             spacing={4}
             alignItems="flex-end"
-            sx={{ margin: "0 auto" }}
+            sx={{ margin: "0 auto", height: "25rem" }}
           >
-            <Grid item container spacing={2} sx={{ marginTop: "1rem" }}>
+            <Grid
+              item
+              container
+              spacing={!isMobile && 2}
+              sx={{ marginTop: "1rem" }}
+            >
               <Grid item container direction="column" xs={10}>
                 <Grid item>
                   <Typography variant="h2">{product.name}</Typography>
@@ -68,8 +85,8 @@ const Product = ({ product, user, handleBuyProduct }) => {
                 <ShareIcon fontSize="large" />
               </Grid>
             </Grid>
-            <Grid item spacing={2}>
-              <Typography variant="h4">{`${product.price}원`}</Typography>
+            <Grid item spacing={!isMobile && 2}>
+              <Typography variant="h4">{price}</Typography>
             </Grid>
             <Grid item>
               <Button
