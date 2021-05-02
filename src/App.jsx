@@ -22,7 +22,6 @@ function App() {
 
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
-      <CssBaseline />
       <Switch>
         <Route exact path="/" component={MainPage} />
         <Route path="/login" component={LoginPage} />

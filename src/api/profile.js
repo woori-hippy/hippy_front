@@ -8,22 +8,22 @@ export const getProfile = async () => {
   return response.data.user;
 };
 
-export const getNFTProfile = async () => {
+export const accountChangeReqeust = async (wooriAccount, wooriToken) => {
   const response = await axios({
-    method: "get",
-    url: "/profile/nft",
+    method: "patch",
+    url: "/profile/woori",
+    data : {
+      wooriAccount: wooriAccount,
+      wooriToken: wooriToken
+    }
   });
   return response.data;
 };
 
-export const updateWooriAccount = async (account) => {
+export const getNFTProfile = async () => {
   const response = await axios({
-    method: "patch",
-    url: "/profile/woori",
-    data: {
-      wooriAccount: account.wooriAccount,
-      wooriToken: account.wooriToken,
-    },
+    method: "get",
+    url: "/profile/nft",
   });
   return response.data;
 };
