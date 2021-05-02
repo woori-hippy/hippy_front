@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Container from "@material-ui/core/Container";
 import Header from "./Header";
 import Footer from "./Footer.jsx";
@@ -15,50 +15,60 @@ import {
 import SendIcon from '@material-ui/icons/Send';
 import AccountConfirm from "./AccountConfirm";
 import IdentityConfirm from "./IdentityConfirm";
-import { TryRounded } from "@material-ui/icons";
+import { phoneRequest, wooriTokenRequest } from "../api/woori";
 
 const bankList = [
-  {
-    value: '1',
-    label: "우리은행",
-  },
-  {
-    value: '2',
-    label: "우리은행",
-  },
-  {
-    value: '3',
-    label: "우리은행",
-  },
-  {
-    value: '4',
-    label: "우리은행",
-  },
-  {
-    value: '5',
-    label: "우리은행",
-  },
+  { value: '1', label: "우리은행" },
+  { value: '2', label: "우리은행" },
+  { value: '3', label: "우리은행" },
+  { value: '4', label: "우리은행" },
+  { value: '5', label: "우리은행" }
 ];
 
 export default function BankAccountRegister(user) {
-  // state
-  const [selectedBank, setSelectedBank] = React.useState('');
-  const [newWindow, setNewWindow] = React.useState({
+  // states
+  const [selectedBank, setSelectedBank] = useState('');
+  const [newWindow, setNewWindow] = useState({
     identity: false,
     account: false
   });
-  const [snackBar, setSnackBar] = React.useState(false);
-  const [userInfos, setUserInfos] = React.useState({
+  const [snackBar, setSnackBar] = useState(false);
+  const [userInfos, setUserInfos] = useState({
     bankName: "",
     account: '',
-    firstNIN: '', // National Identification Number
+    firstNIN: '', // National Identification Number (주민등록번호)
     lastNIN: '',
     phoneNum: '',
-    certificationNum: ''
+    certificationNum: '',
+    token: '',
+    wooriAccount: ''
+  })
+  const [disable, setDisable] = useState({
+    certification: false,
+    bankName: true,
+    account: true,
+    phoneNum: true,
+    certificationNum: true
   })
   
-
+  
   // handle methods
+  const handleGetToken = (COMC_DIS, HP_NO, HP_CRTF_AGR_YN, FNM, RRNO_BFNB, ENCY_RRNO_LSNM) => {
+    wooriTokenRequest(COMC_DIS, HP_NO, HP_CRTF_AGR_YN, FNM, RRNO_BFNB, ENCY_RRNO_LSNM).then(response => { // api call
+      setUserInfos({
+        ...userInfos,
+        token: response.data.dataBody.CRTF_UNQ_NO
+      })
+      setDisable({
+        ...disable,
+        certification: true,
+        bankName: false,
+        account: false,
+        phoneNum: false,
+        certificationNum: false
+      })
+    })
+  }
   const handleBankSelect = (event) => {
     setSelectedBank(event.target.value);
     setUserInfos({
@@ -84,18 +94,35 @@ export default function BankAccountRegister(user) {
     }
     setSnackBar(false);
   };
-  const showWindow = (event) => {
-    const id = event.currentTarget.id
+  const showCertificationWindow = () => {
     setNewWindow({
       ...newWindow,
-      [id]: true
+      identity: true
+    })
+  }
+  const showAccountWindow = () => {
+    const phone = {
+      RRNO_BFNB: userInfos.firstNIN,
+      ENCY_RRNO_LSNM: userInfos.lastNIN,
+      ENCY_SMS_CRTF_NO: userInfos.certificationNum,
+      CRTF_UNQ_NO: userInfos.token
+    }
+    phoneRequest(phone).then(response => { // api call
+      setUserInfos({
+        ...userInfos,
+        wooriAccount: response.data.dataBody.REPT_FA[0].CUS_USG_ACNO
+      })
+    })
+    setNewWindow({
+      ...newWindow,
+      account: true
     })
   }
 
   return (
       <React.Fragment>
-        {newWindow.identity ? <IdentityConfirm onClose={() => {setNewWindow(false)}} /> : null }
-        {newWindow.account ? <AccountConfirm onClose={() => {setNewWindow(false)}} /> : null }
+        {newWindow.identity ? <IdentityConfirm handleGetToken={handleGetToken} onClose={() => {setNewWindow(false)}} /> : null }
+        {newWindow.account ? <AccountConfirm wooriToken={userInfos.token} wooriAccount={userInfos.wooriAccount} onClose={() => {setNewWindow(false)}} /> : null }
         <Header user={user} />
         <Container maxWidth="md">
             <Box>
@@ -130,23 +157,24 @@ export default function BankAccountRegister(user) {
                   <Button
                     id="identity"
                     variant="contained"
-                    color="primary"
+                    disabled={disable.certification}
                     sx={{margin: "3rem", width: "25rem", height: "3.4rem", fontSize: "1rem", backgroundColor: "#3887A6"}}
-                    onClick={showWindow}
+                    onClick={showCertificationWindow}
                   >
-                    본인 인증하기
+                    {(disable.certification ? "본인 인증 완료!" : "본인 인증하기")}
                   </Button>
                 </Grid>
-                <Grid container item xs={12} justifyContent="center" sx={{ flexDirection: "column" }}>
+                <Grid container item xs={12} sx={{ flexDirection: "column" }}>
                   <TextField
                     required
                     select
+                    disabled={(disable.bankName)}
                     label="은행 선택"
                     value={selectedBank}
                     onChange={handleBankSelect}
                     helperText="거래 은행을 선택해주세요"
                     variant="outlined"
-                    sx={{width: "13rem", margin: "0rem auto"}}
+                    sx={{width: "13rem", marginTop: "1rem", margin: "0rem auto"}}
                   >
                     {bankList.map((option) => (
                       <MenuItem key={option.value} value={option.value}>
@@ -157,6 +185,7 @@ export default function BankAccountRegister(user) {
                   <TextField 
                     name="account"
                     required
+                    disabled={(disable.bankName)}
                     label="계좌 번호 입력" 
                     variant="outlined"
                     sx={{margin: "1rem auto", width: "25rem"}}
@@ -164,32 +193,12 @@ export default function BankAccountRegister(user) {
                     helperText="본인의 계좌 번호를 입력해주세요"
                     onChange={handleTextInput}
                   />
-                  <Grid container item xs={6} justifyContent="center" sx={{ flexDirection: "row", margin: "0rem auto" }}>
-                  <TextField
-                    name="firstNIN" 
-                    required
-                    label="주민등록번호 앞자리" 
-                    variant="outlined"
-                    sx={{margin: "1rem 0.5rem", width: "12rem"}}
-                    helperText="주민등록번호 앞자리를 입력해주세요"
-                    onChange={handleTextInput}
-                  />
-                  <TextField 
-                    name="lastNIN"
-                    required
-                    type={false ? 'text' : 'password'}
-                    label="주민등록번호 뒷자리" 
-                    variant="outlined"
-                    sx={{margin: "1rem 0.5rem", width: "12rem"}}
-                    helperText="주민등록번호 뒷자리를 입력해주세요"
-                    onChange={handleTextInput}
-                  />
-                  </Grid>
                 </Grid>
                 <Grid container item xs={6} justifyContent="center" sx={{ flexDirection: "row", margin: "0rem auto" }}>
                   <TextField 
                     name="phoneNum"
                     required
+                    disabled={(disable.bankName)}
                     label="휴대폰 번호 입력" 
                     variant="outlined"
                     sx={{margin: "0.5rem", width: "16rem"}}
@@ -197,6 +206,7 @@ export default function BankAccountRegister(user) {
                     onChange={handleTextInput}
                   />
                   <Button
+                    disabled={(disable.bankName)}
                     variant="contained"
                     color="primary"
                     sx={{margin: "0.5rem", width: "8rem", height: "3.4rem", fontSize: "1rem", backgroundColor: "#3887A6"}}
@@ -217,6 +227,7 @@ export default function BankAccountRegister(user) {
                   <TextField 
                     name="certificationNum"
                     required
+                    disabled={(disable.bankName)}
                     label="인증 번호 입력" 
                     variant="outlined"
                     sx={{margin: "0.5rem", width: "16rem"}}
@@ -226,6 +237,7 @@ export default function BankAccountRegister(user) {
                     
                   </TextField>
                   <Button
+                    disabled={(disable.bankName)}
                     variant="contained"
                     color="primary"
                     sx={{margin: "0.5rem", width: "8rem", height: "3.4rem", fontSize: "1rem", backgroundColor: "#3887A6"}}
@@ -235,10 +247,11 @@ export default function BankAccountRegister(user) {
                   <Grid container item xs={12} justifyContent="center" sx={{ flexDirection: "row", margin: "0rem auto" }}>
                     <Button
                       id="account"
+                      disabled={(disable.bankName)}
                       variant="contained"
                       color="primary"
                       sx={{margin: "0.5rem", width: "25rem", height: "3.4rem", fontSize: "1rem", backgroundColor: "#1B7EA6"}}
-                      onClick={showWindow}
+                      onClick={showAccountWindow}
                     >
                       계좌 정보 확인하기
                     </Button>

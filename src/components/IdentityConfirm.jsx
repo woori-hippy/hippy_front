@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useRef} from 'react';
 import {
   Button,
   TextField,
@@ -6,58 +6,97 @@ import {
 } from "@material-ui/core";
 import Typography from '@material-ui/core/Typography';
 import NewWindow from 'react-new-window'
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
-export default function IdentityConfirm({onClose}) {
-  const handleClose = () => {
+export default function IdentityConfirm({onClose, handleGetToken}) {
+  // refs
+  const firstNINRef = useRef() // National Identity Number (주민등록번호)
+  const lastNINRef = useRef()
+  const phoneNumberRef = useRef()
+
+  // handle methods
+  const handleCertification = (e) => {
+    e.preventDefault();
+    const firstNIN = firstNINRef.current.value
+    const lastNIN = lastNINRef.current.value
+    const phoneNumber = phoneNumberRef.current.value
+    handleGetToken("3", phoneNumber, "Y", "김건훈", firstNIN, lastNIN) // api call
     onClose()
   }
-
+  
   return (
     <NewWindow
       title="본인 인증"
       features={{width: "600", height: "500"}}
       >
-      <Typography align="center"> 
-      <Grid container spacing={2}>
-      <Grid item xs={6} justifyContent="center" sx={{ flexDirection: "row", margin: "0rem auto" }}>
-      <TextField
-                    name="firstNIN" 
-                    required
-                    label="주민등록번호 앞자리" 
-                    variant="outlined"
-                    sx={{margin: "1rem 0.5rem", width: "12rem"}}
-                    helperText="주민등록번호 앞자리를 입력해주세요"
-                    
-                  />
-                  
-                  </Grid>
-                  <Grid item xs={6} justifyContent="center" sx={{ flexDirection: "row", margin: "0rem auto" }}>
-      <TextField
-                    name="firstNIN" 
-                    required
-                    label="주민등록번호 앞자리" 
-                    variant="outlined"
-                    sx={{margin: "1rem 0.5rem", width: "12rem"}}
-                    helperText="주민등록번호 앞자리를 입력해주세요"
-                    
-                  />
-                  
-                  </Grid>
-                  </Grid>
-      </Typography>
-      <Typography align="center" margin="2rem" fontWeight="bold" fontSize="1.2rem"> 
-        으ㅏ르ㅏ님어리ㅏㅁ너라ㅣㄴㅇ므라ㅣㄴ어라ㅣㅓㄴㅁ라ㅣㅓㅁ니ㅏㅇ
-      </Typography>
-      <Typography align="center" margin="2rem" fontSize="1.5rem" color="#3887A6"> 
-        1002-253-49309-392923
-      </Typography>
-      <Typography align="center" margin="2rem" fontSize="1.5rem"> 
-        <Button align="center" variant="contained" size="large"
-          sx={{marginTop: "4rem", backgroundColor: "#3887A6"}} onClick={handleClose}>
-            계좌 등록하기
-        </Button>
-      </Typography> 
+      <Grid container spacing={1}>
+        <Grid item xs={12}>
+          <Typography
+              component="h2"
+              sx={{
+                fontSize: "1.5rem",
+                marginTop: "2rem",
+                marginLeft: "3rem"
+              }}
+              align="left"
+              color="#1B7EA6">
+            본인 인증
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography align="left" sx={{marginTop: "1rem", marginLeft: "3rem"}}>
+            주민등록번호
+          </Typography>
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            name="firstNIN" 
+            required
+            variant="outlined"
+            sx={{margintTop: "1rem", marginLeft: "3rem", width: "14rem"}}
+            helperText="주민등록번호 앞자리를 입력해주세요"
+            inputRef={firstNINRef}
+          />        
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            name="firstNIN" 
+            required
+            variant="outlined"
+            sx={{width: "14rem"}}
+            helperText="주민등록번호 뒷자리를 입력해주세요"
+            inputRef={lastNINRef}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <Typography align="left" sx={{marginTop: "1rem", marginLeft: "3rem"}}>
+            휴대폰 번호
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <TextField 
+            name="phoneNum"
+            required
+            variant="outlined"
+            sx={{width: "14rem", marginLeft: "3rem"}}
+            helperText="휴대폰 번호를 입력해주세요"
+            inputRef={phoneNumberRef}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <Button
+            variant="contained"
+            sx={{marginLeft: "3rem", marginTop: "2rem", width: "14rem", height: "3rem", fontSize: "1rem", backgroundColor: "#3887A6"}}
+            onClick={handleCertification} >
+            인증하기
+          </Button>
+        </Grid>
+
+      </Grid>
     </NewWindow>
   );
 }
+
+
+
+
+
