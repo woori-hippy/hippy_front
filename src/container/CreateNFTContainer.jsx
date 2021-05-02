@@ -1,17 +1,19 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import NFTCreate from "../components/NFTCreate";
+import CreateNFT from "../components/CreateNFT";
 import { createNFT } from "../modules/nft";
+import { getNFTProfile } from "../modules/user";
 
-const NFTCreateContainer = (props) => {
+const CreateNFTContainer = (props) => {
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
 
   const handleCreateNFT = (hash) => {
     dispatch(createNFT(hash));
+    dispatch(getNFTProfile());
   };
 
-  return <NFTCreate user={user} onCreateNFT={handleCreateNFT} />;
+  return <CreateNFT user={user} onCreateNFT={handleCreateNFT} />;
 };
 
-export default NFTCreateContainer;
+export default CreateNFTContainer;

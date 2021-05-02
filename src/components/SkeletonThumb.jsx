@@ -23,7 +23,7 @@ const SkeletonThumb = () => {
           sx={{ color: "gray" }}
         >
           <Skeleton
-            variant="circular"
+            variant="text"
             animation="wave"
             width="1.5rem"
             height="1.5rem"

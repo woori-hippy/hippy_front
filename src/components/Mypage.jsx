@@ -6,10 +6,12 @@ import { Avatar, Typography, Box, Button, Card } from "@material-ui/core";
 import ProductThumb from "./ProductThumb";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import CheckIcon from "@material-ui/icons/Check";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-import NFTThumb from "./NFTThumb";
+import SkeletonThumb from "./SkeletonThumb";
+
+const LazyThumb = lazy(() => import("./NFTThumb"));
 
 const activeTypo = (nft, state, title) => {
   return nft === state ? (
@@ -188,7 +190,9 @@ export default function Mypage({ products, nftProfile, user }) {
                       boxShadow: "2px 3px 10px 0px rgba(117,117,117,0.5)",
                     }}
                   >
-                    <NFTThumb nft={nft} />
+                    <Suspense fallback={<SkeletonThumb />}>
+                      <LazyThumb nft={nft} />
+                    </Suspense>
                   </Card>
                 </Box>
               ))}
