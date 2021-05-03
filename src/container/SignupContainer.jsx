@@ -11,6 +11,7 @@ const SignupContainer = (props) => {
 
   const handleSignup = ({ name, email, password }) => {
     dispatch(signup({ name, email, password }));
+    history.push("/");
   };
 
   useEffect(() => {

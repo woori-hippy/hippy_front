@@ -107,7 +107,7 @@ export default function user(state = initialState, action) {
     case SIGNUP:
     case SIGNUP_SUCCESS:
     case SIGNUP_ERROR:
-      return handleAsyncActions(SIGNUP, "user")(state, action);
+      return handleAsyncActions(SIGNUP, "")(state, action);
     case OAUTH_KAKAO:
     case OAUTH_KAKAO_SUCCESS:
     case OAUTH_KAKAO_ERROR:
