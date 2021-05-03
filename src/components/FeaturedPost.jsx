@@ -55,13 +55,6 @@ function FeaturedPost(props) {
                 </Typography>
               </CardContent>
             </div>
-            {/* <Hidden smDown>
-              <CardMedia
-                className={classes.cardMedia}
-                image={post.image}
-                title={post.imageText}
-              />
-            </Hidden> */}
           </Card>
         </Link>
       </CardActionArea>

@@ -16,6 +16,12 @@ const SIGNOUT_ERROR = "user/SIGNOUT_ERROR";
 const SIGNUP = "user/SIGNUP";
 const SIGNUP_SUCCESS = "user/SIGNUP_SUCCESS";
 const SIGNUP_ERROR = "user/SIGNUP_ERROR";
+const OAUTH_KAKAO = "user/OAUTH_KAKAO";
+const OAUTH_KAKAO_SUCCESS = "user/OAUTH_KAKAO_SUCCESS";
+const OAUTH_KAKAO_ERROR = "user/OAUTH_KAKAO_ERROR";
+const OAUTH_GOOGLE = "user/OAUTH_GOOGLE";
+const OAUTH_GOOGLE_SUCCESS = "user/OAUTH_GOOGLE_SUCCESS";
+const OAUTH_GOOGLE_ERROR = "user/OAUTH_GOOGLE_ERROR";
 
 const GET_PROFILE = "user/GET_PROFILE";
 const GET_PROFILE_SUCCESS = "user/GET_PROFILE_SUCCESS";
@@ -44,6 +50,15 @@ export const signup = ({ name, email, password }) => ({
   },
   meta: email,
 });
+export const oauthKakao = (token) => ({
+  type: OAUTH_KAKAO,
+  payload: token,
+});
+export const oauthGoogle = (token) => ({
+  type: OAUTH_GOOGLE,
+  payload: token,
+});
+
 export const getProfile = () => ({
   type: GET_PROFILE,
 });
@@ -54,6 +69,9 @@ export const getNFTProfile = () => ({
 const loginSaga = createPromiseSaga(LOGIN, loginAPI.login);
 const signoutSaga = createPromiseSaga(SIGNOUT, loginAPI.signout);
 const signupSaga = createPromiseSaga(SIGNUP, loginAPI.signup);
+const oauthKakaoSaga = createPromiseSaga(OAUTH_KAKAO, loginAPI.oauthKakao);
+const oauthGoogleSaga = createPromiseSaga(OAUTH_GOOGLE, loginAPI.oauthGoogle);
+
 const getProfileSaga = createPromiseSaga(GET_PROFILE, profileAPI.getProfile);
 const getNFTProfileSaga = createPromiseSaga(
   GET_NFT_PROFILE,
@@ -64,6 +82,9 @@ export function* userSaga() {
   yield takeEvery(LOGIN, loginSaga);
   yield takeEvery(SIGNOUT, signoutSaga);
   yield takeEvery(SIGNUP, signupSaga);
+  yield takeEvery(OAUTH_KAKAO, oauthKakaoSaga);
+  yield takeEvery(OAUTH_GOOGLE, oauthGoogleSaga);
+
   yield takeEvery(GET_PROFILE, getProfileSaga);
   yield takeEvery(GET_NFT_PROFILE, getNFTProfileSaga);
 }
@@ -87,6 +108,15 @@ export default function user(state = initialState, action) {
     case SIGNUP_SUCCESS:
     case SIGNUP_ERROR:
       return handleAsyncActions(SIGNUP, "user")(state, action);
+    case OAUTH_KAKAO:
+    case OAUTH_KAKAO_SUCCESS:
+    case OAUTH_KAKAO_ERROR:
+      return handleAsyncActions(OAUTH_KAKAO, "user")(state, action);
+    case OAUTH_GOOGLE:
+    case OAUTH_GOOGLE_SUCCESS:
+    case OAUTH_GOOGLE_ERROR:
+      return handleAsyncActions(OAUTH_GOOGLE, "user")(state, action);
+
     case GET_PROFILE:
     case GET_PROFILE_SUCCESS:
     case GET_PROFILE_ERROR:

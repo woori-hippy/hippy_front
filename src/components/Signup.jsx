@@ -1,7 +1,8 @@
+/** @jsxImportSource @emotion/react */
+import { jsx, css } from "@emotion/react";
 import * as React from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -12,6 +13,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { useRef } from "react";
+import { Link as LinkRoute } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -23,7 +25,7 @@ function Copyright(props) {
     >
       {"Copyright © "}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        Hippy
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -51,7 +53,6 @@ export default function Signup({ onSignup }) {
   };
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
       <Box
         sx={{
           marginTop: 8,
@@ -60,7 +61,7 @@ export default function Signup({ onSignup }) {
           alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+        <Avatar sx={{ m: 1, bgcolor: "#1B7EA6" }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
@@ -132,16 +133,29 @@ export default function Signup({ onSignup }) {
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{
+              mt: 3,
+              mb: 1,
+              height: "3.5rem",
+              backgroundColor: "#3887A6",
+              fontSize: "1.5rem",
+              fontWeight: "bold",
+            }}
             onClick={handleSignup}
           >
-            Sign Up
+            회원 가입
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <LinkRoute
+                to="/login"
+                css={css`
+                  font-size: 0.8rem;
+                  color: #1b7ea6;
+                `}
+              >
                 Already have an account? Sign in
-              </Link>
+              </LinkRoute>
             </Grid>
           </Grid>
         </Box>
