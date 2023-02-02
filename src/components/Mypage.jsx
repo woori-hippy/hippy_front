@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
-import Container from "@material-ui/core/Container";
+import Container from "@mui/material/Container";
 import Header from "./Header";
 import Footer from "./Footer.jsx";
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid";
 import {
   Avatar,
   Typography,
@@ -11,13 +11,13 @@ import {
   Button,
   Card,
   useMediaQuery,
-} from "@material-ui/core";
+} from "@mui/material";
 import ProductThumb from "./ProductThumb";
-import MailOutlineIcon from "@material-ui/icons/MailOutline";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { Link } from "react-router-dom";
 import React, { lazy, Suspense, useState } from "react";
-import CheckIcon from "@material-ui/icons/Check";
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+import CheckIcon from "@mui/icons-material/Check";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import SkeletonThumb from "./SkeletonThumb";
 
 const LazyThumb = lazy(() => import("./NFTThumb"));

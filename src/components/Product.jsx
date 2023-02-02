@@ -5,9 +5,9 @@ import {
   Grid,
   Typography,
   useMediaQuery,
-} from "@material-ui/core";
-import ShareIcon from "@material-ui/icons/Share";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+} from "@mui/material";
+import ShareIcon from "@mui/icons-material/Share";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";

@@ -1,9 +1,9 @@
 import * as React from "react";
-import Box from "@material-ui/core/Box";
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
-import Link from "@material-ui/core/Link";
-import { Grid, Toolbar } from "@material-ui/core";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
+import { Grid, Toolbar } from "@mui/material";
 
 const sections = [
   { title: "회사소개", url: "#" },

@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
 import React, { Fragment, useRef, useState } from "react";
-import Container from "@material-ui/core/Container";
+import Container from "@mui/material/Container";
 import Header from "./Header";
 import Footer from "./Footer.jsx";
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid";
 import {
   Typography,
   Box,
@@ -15,11 +15,12 @@ import {
   Select,
   MenuItem,
   useMediaQuery,
-} from "@material-ui/core";
-import { useHistory, useLocation } from "react-router";
+} from "@mui/material";
+import { useLocation } from "react-router";
+import useInternalRouter from "../pages/useInternalRouter";
 
 export default function CreateProduct({ user, onCreateProduct }) {
-  const history = useHistory();
+  const router = useInternalRouter();
   const location = useLocation();
 
   const nft = location.state.nft;
@@ -45,7 +46,7 @@ export default function CreateProduct({ user, onCreateProduct }) {
       src: `https://ipfs.io/ipfs/${nft.ipfsHash}`,
       tag: tag,
     });
-    history.push("/mypage");
+    router.push("/mypage");
   };
 
   return (

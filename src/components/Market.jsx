@@ -13,12 +13,12 @@ import {
   Radio,
   RadioGroup,
   Typography,
-} from "@material-ui/core";
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import AccountBoxIcon from "@material-ui/icons/AccountBox";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import ProductThumb from "./ProductThumb";
 import SkeletonThumb from "./SkeletonThumb";
 

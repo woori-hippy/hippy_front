@@ -1,15 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
-import { Button, Card, CardMedia, Grid } from "@material-ui/core";
+import { Button, Card, CardMedia, Grid } from "@mui/material";
 import React from "react";
-import { useHistory } from "react-router-dom";
+import useInternalRouter from "../pages/useInternalRouter";
 
 const NFTThumb = ({ nft }) => {
-  const history = useHistory();
+  const router = useInternalRouter();
   const handleSale = () => {
     nft.productId
-      ? history.push(`/product/${nft.productId}`)
-      : history.push({
+      ? router.push(`/product/${nft.productId}`)
+      : router.push({
           pathname: "/createproduct",
           state: { nft: nft },
         });

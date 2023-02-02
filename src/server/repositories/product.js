@@ -1,0 +1,40 @@
+const data = [
+  {
+    id: 1,
+    token_id: 1,
+    user_id: 2,
+    price: 10000,
+    is_sold: false,
+    is_acution: false,
+    created_at: "2021-08-12T14:49:38.319Z",
+    name: "목 데이터 1",
+    src: "https://picsum.photos/200/300",
+    tag: "목",
+  },
+  {
+    id: 2,
+    token_id: 2,
+    user_id: 1,
+    price: 10000,
+    is_sold: false,
+    is_acution: false,
+    created_at: "2021-08-13T14:49:38.319Z",
+    name: "목 데이터 2",
+    src: "https://picsum.photos/200/300",
+    tag: "목데",
+  },
+  {
+    id: 3,
+    token_id: 3,
+    user_id: 2,
+    price: 10000,
+    is_sold: false,
+    is_acution: false,
+    created_at: "2021-08-12T14:49:38.319Z",
+    name: "목 데이터 3",
+    src: "https://picsum.photos/200/300",
+    tag: "목데이터",
+  },
+];
+
+export default data;

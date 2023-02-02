@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
+import useInternalRouter from "../pages/useInternalRouter";
 import Product from "../components/Product";
 import { buyProduct, getProduct } from "../modules/products";
 
 const ProductContainer = ({ productId }) => {
-  const history = useHistory();
+  const router = useInternalRouter();
   const user = useSelector((state) => state.user.user);
   const { data, loading, error } = useSelector(
     (state) => state.products.product[productId]
@@ -24,7 +24,7 @@ const ProductContainer = ({ productId }) => {
   const handleBuyProduct = () => {
     window.confirm("구매가 완료되었습니다");
     dispatch(buyProduct(data.id));
-    history.push("/mypage");
+    router.push("/mypage");
   };
 
   if (loading && !data) return <div>로딩중...</div>; // 로딩중이면서, 데이터가 없을 때에만 로딩중... 표시

@@ -1,26 +1,20 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
+import ReactDOM from "react-dom/client";
 import App from "./App";
-import { applyMiddleware, createStore } from "redux";
-import rootReducer, { rootSaga } from "./modules";
-import { composeWithDevTools } from "redux-devtools-extension";
 import { Provider } from "react-redux";
-import createSagaMiddleware from "redux-saga";
-import logger from "redux-logger";
+import { BrowserRouter } from "react-router-dom";
+import store from "./store";
+import "./index.css";
+import { worker } from "./server";
 
-const sagaMiddleware = createSagaMiddleware();
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
-const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(sagaMiddleware, logger))
-);
+worker.start({ onUnhandledRequest: "bypass" });
 
-sagaMiddleware.run(rootSaga);
-
-ReactDOM.render(
+root.render(
   <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById("root")
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>
 );

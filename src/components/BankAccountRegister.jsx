@@ -1,23 +1,22 @@
 import React, { useState } from "react";
-import Container from "@material-ui/core/Container";
 import Header from "./Header";
 import Footer from "./Footer.jsx";
-import Grid from "@material-ui/core/Grid";
 import {
   Typography,
-  Box,
   Button,
   TextField,
   MenuItem,
   Alert,
   Snackbar,
   useMediaQuery,
-} from "@material-ui/core";
-import SendIcon from "@material-ui/icons/Send";
+  Container,
+  Grid,
+} from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
 import AccountConfirm from "./AccountConfirm";
 import IdentityConfirm from "./IdentityConfirm";
 import { phoneRequest, wooriTokenRequest } from "../api/woori";
-import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
+import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 
 const bankList = [
   { value: "1", label: "우리은행" },

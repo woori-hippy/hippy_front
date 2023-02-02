@@ -1,15 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
 import * as React from "react";
-import Toolbar from "@material-ui/core/Toolbar";
-import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import SearchIcon from "@material-ui/icons/Search";
-import PersonIcon from "@material-ui/icons/Person";
-import { Avatar, Container, TextField, useMediaQuery } from "@material-ui/core";
-import { Link, useHistory } from "react-router-dom";
+import Toolbar from "@mui/material/Toolbar";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import SearchIcon from "@mui/icons-material/Search";
+import PersonIcon from "@mui/icons-material/Person";
+import { Avatar, Container, TextField, useMediaQuery } from "@mui/material";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signout } from "../modules/user";
+import useInternalRouter from "../pages/useInternalRouter";
 
 const sections = [
   { title: "Market", url: "market" },
@@ -21,9 +22,9 @@ const sections = [
 
 function Header({ user }) {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const router = useInternalRouter();
   const handlehistory = (e) => {
-    user.data ? history.push("/mypage") : history.push("/login");
+    user.data ? router.push("/mypage") : router.push("/login");
   };
   const isMobile = useMediaQuery("(max-width: 568px)");
 
@@ -81,7 +82,7 @@ function Header({ user }) {
               sx={{ textDecoration: "none" }}
               onClick={() => {
                 dispatch(signout());
-                history.push("/");
+                router.push("/");
               }}
             >
               LOG OUT

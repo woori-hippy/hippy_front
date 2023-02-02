@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
+import useInternalRouter from "../pages/useInternalRouter";
 import Signup from "../components/Signup";
 import { signup } from "../modules/user";
 
 const SignupContainer = (props) => {
-  const history = useHistory();
+  const router = useInternalRouter();
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
 
@@ -14,8 +14,8 @@ const SignupContainer = (props) => {
   };
 
   useEffect(() => {
-    if (user.data) history.push("/");
-  }, [dispatch, user, history]);
+    if (user.data) router.push("/");
+  }, [dispatch, user, router]);
 
   return <Signup onSignup={handleSignup} />;
 };

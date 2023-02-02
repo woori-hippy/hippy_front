@@ -12,6 +12,7 @@ const rootReducer = combineReducers({
   user,
   nft,
 });
+
 export function* rootSaga() {
   yield all([productsSaga(), userSaga(), nftSaga()]);
 }

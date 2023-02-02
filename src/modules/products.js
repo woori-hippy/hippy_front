@@ -1,4 +1,4 @@
-import * as productsAPI from "../api/products";
+import * as productsAPI from "../api/product";
 import {
   reducerUtils,
   handleAsyncActions,

@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
+import useInternalRouter from "../pages/useInternalRouter";
 import Mypage from "../components/Mypage";
 import { getNFTProfile } from "../modules/user";
 
 const MypageContainer = (props) => {
-  const history = useHistory();
+  const router = useInternalRouter();
   const user = useSelector((state) => state.user.user);
   const { data, loading, error } = useSelector(
     (state) => state.user.nftProfile
@@ -17,8 +17,8 @@ const MypageContainer = (props) => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (!user.data) history.push("/");
-  }, [history, user]);
+    if (!user.data) router.push("/");
+  }, [router, user]);
 
   if (loading && !data) return <div>로딩중...</div>;
   if (error) return <div>에러 발생!</div>;

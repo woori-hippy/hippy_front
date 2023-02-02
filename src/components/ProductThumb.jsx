@@ -1,4 +1,4 @@
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import {
   Card,
   CardActionArea,
@@ -6,7 +6,7 @@ import {
   CardMedia,
   Grid,
   Typography,
-} from "@material-ui/core";
+} from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 

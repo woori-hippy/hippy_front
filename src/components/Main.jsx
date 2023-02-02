@@ -1,12 +1,12 @@
 import React, { lazy, Suspense } from "react";
-import Grid from "@material-ui/core/Grid";
-import Container from "@material-ui/core/Container";
-import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Header from "./Header";
 import MainFeaturedPost from "./MainFeaturedPost";
 import FeaturedPost from "./FeaturedPost.jsx";
 import Footer from "./Footer.jsx";
-import { Box, ImageList, ImageListItem, Typography } from "@material-ui/core";
+import { Box, ImageList, ImageListItem, Typography } from "@mui/material";
 import SkeletonThumb from "./SkeletonThumb";
 
 const LazyThumb = lazy(() => import("./ProductThumb"));
